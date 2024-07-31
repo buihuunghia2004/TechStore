@@ -1,0 +1,59 @@
+# Bỏ qua các thư mục node_modules trong toàn bộ dự án
+**/node_modules
+
+# Bỏ qua thư mục build/output
+**/build
+**/dist
+
+# Bỏ qua các tệp nhật ký
+*.log
+
+# Bỏ qua các tệp cấu hình môi trường
+.env
+.env.local
+.env.*.local
+
+# Bỏ qua các thư mục tạm thời
+**/tmp
+**/temp
+
+# Bỏ qua các tệp hệ điều hành
+.DS_Store
+Thumbs.db
+
+# Bỏ qua các tệp lockfile
+package-lock.json
+yarn.lock
+
+# Bỏ qua các tệp dành cho IDE
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+
+# Bỏ qua các tệp cụ thể của dự án React Native
+# iOS
+# **/ios
+**/ios/build
+**/ios/Pods
+**/ios/*.xcworkspace
+**/ios/*.xcodeproj
+**/ios/*.xcuserdata
+
+# Android
+# **/android
+**/android/.gradle
+**/android/app/build
+**/android/app/src/main/assets/index.android.bundle
+**/android/build
+
+# Bỏ qua các tệp biên dịch khác
+**/coverage
+**/.expo
+**/web-build
+**/build/android
+**/build/ios
+**/android/app/debug
+**/android/app/release
