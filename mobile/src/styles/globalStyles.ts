@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "./colors";
-import { borderRadius, cardElevation, screenPadding, spacing } from "./dimensions";
-
+import { borderRadius, cardElevation, fontSize, screenPadding, spacing } from "./dimensions";
 
 export const textStyles = StyleSheet.create({
   h1: {
@@ -36,8 +35,14 @@ export const textStyles = StyleSheet.create({
     fontWeight:'300',
   },
   body_md: {
+    textAlign: 'center',
+    fontFamily: 'Inter', 
+    fontSize: 14, 
+    fontWeight:'200',
+  },
+  body_lg: {
     fontFamily: 'Inter',
-    fontSize: 14,
+    fontSize: 16,
     fontStyle:'normal',
     fontWeight:'300',
   },
@@ -55,25 +60,34 @@ export const textStyles = StyleSheet.create({
   }
 });
 
-export const buttonStyles = {
+export const buttonStyles =StyleSheet.create({
   solid: {
     backgroundColor: colors.primary,
     borderRadius: borderRadius.medium,
     paddingVertical: spacing.small,
     paddingHorizontal: spacing.small,
     alignItems: 'center',
+    justifyContent:'center'
   },
   outline: {
     borderRadius: borderRadius.medium,
     borderWidth: 1,
     borderColor: colors.primary,
     paddingVertical: spacing.small,
-    paddingHorizontal: spacing.medium,
+    paddingHorizontal: spacing.small,
     alignItems: 'center',
+    justifyContent:'center'
   },
   text: textStyles.button_lg
-};
-
+});
+export const inputTextStyle =StyleSheet.create({
+  search :{
+    borderRadius: borderRadius.small,
+    backgroundColor: colors.grayEDEDED,
+    paddingHorizontal:spacing.medium,
+    alignItems:'center'
+  }
+})
 export const iconStyles = StyleSheet.create({
   icon14: { 
     width: 14,
@@ -137,5 +151,5 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     maxHeight: 1,
     backgroundColor: colors.gray2D2D2D,
-  }
+  },
 });
