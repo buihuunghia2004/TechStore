@@ -1,7 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "./colors";
-import { borderRadius, cardElevation, screenPadding, spacing } from "./dimensions";
-
+import { borderRadius, cardElevation, fontSize, screenPadding, spacing } from "./dimensions";
 
 export const textStyles = StyleSheet.create({
   h1: {
@@ -36,10 +35,19 @@ export const textStyles = StyleSheet.create({
     fontWeight:'300',
   },
   body_md: {
+    textAlign: 'center',
+    fontFamily: 'Inter', 
+    fontSize: 14, 
+    fontWeight:'200',
+  },
+  body_lg: {
+    color: 'black',
     fontFamily: 'Inter',
-    fontSize: 14,
+    fontSize: 16,
     fontStyle:'normal',
     fontWeight:'300',
+    textAlign:'center',
+    lineHeight:22
   },
   button_lg: {
     fontFamily: 'Inter',

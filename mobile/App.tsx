@@ -2,11 +2,12 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import AppButton from '~/components/common/AppButton'
 import { assets } from '~/styles/app/assets'
-import IconButton from '~/components/common/IconButton'
+import CheckBox from '~/components/common/CheckBox'
+
 const App = () => {
   return (
     <View>
-      <IconButton icon={assets.icon.google}/>
+      <CheckBox checked={true} title='1000' sub='(999)'/>
     </View>
   )
 }
