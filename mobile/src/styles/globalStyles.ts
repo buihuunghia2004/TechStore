@@ -3,7 +3,7 @@ import { colors } from "./colors";
 import { borderRadius, cardElevation, screenPadding, spacing } from "./dimensions";
 
 
-export const textStyles = {
+export const textStyles = StyleSheet.create({
   h1: {
     fontFamily: 'Inter',
     fontSize: 24,
@@ -53,7 +53,7 @@ export const textStyles = {
     fontStyle:'normal',
     fontWeight:'500',
   }
-};
+});
 
 export const buttonStyles = {
   solid: {
@@ -74,7 +74,7 @@ export const buttonStyles = {
   text: textStyles.button_lg
 };
 
-export const iconStyles = {
+export const iconStyles = StyleSheet.create({
   icon14: { 
     width: 14,
     height: 14,
@@ -82,6 +82,10 @@ export const iconStyles = {
   icon16: {
     width: 16, 
     height: 16,
+  },
+  icon20: {
+    width: 20, 
+    height: 20,
   },
   icon24: {
     width: 24, 
@@ -95,9 +99,9 @@ export const iconStyles = {
     width: 40, 
     height: 40,
   },
-}
+})
 
-export const containerStyles = {
+export const containerStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -126,7 +130,7 @@ export const containerStyles = {
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-};
+});
 
 export const globalStyles = StyleSheet.create({
   line: {
