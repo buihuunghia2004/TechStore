@@ -2,20 +2,11 @@ import { StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import AppButton from '~/components/common/AppButton'
 import { assets } from '~/styles/app/assets'
+import IconButton from '~/components/common/IconButton'
 const App = () => {
   return (
-    <View style={[styles.container,{flexDirection:'row',gap:8}]}>
-      <AppButton
-        leftIcon={assets.icon.sms}
-        rightIcon={assets.icon.sms}
-        onPress={() => console.log()}
-        title='Login' />
-        <AppButton
-        leftIcon={assets.icon.google}
-        rightIcon={assets.icon.google}
-        outline
-        onPress={() => console.log()}
-        title='Login' />
+    <View>
+      <IconButton icon={assets.icon.google}/>
     </View>
   )
 }
