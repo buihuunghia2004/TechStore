@@ -70,7 +70,7 @@ export const buttonStyles =StyleSheet.create({
     borderWidth: 1,
     borderColor: colors.primary,
     paddingVertical: spacing.small,
-    paddingHorizontal: spacing.medium,
+    paddingHorizontal: spacing.small,
     alignItems: 'center',
     justifyContent:'center'
   },
