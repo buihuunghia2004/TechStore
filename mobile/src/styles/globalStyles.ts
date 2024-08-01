@@ -29,6 +29,7 @@ export const textStyles = StyleSheet.create({
     fontWeight:'500',
   },
   body_sm: {
+    color:colors.primary,
     fontFamily: 'Inter',
     fontSize: 12,
     fontStyle:'normal',
@@ -84,7 +85,14 @@ export const buttonStyles =StyleSheet.create({
   },
   text: textStyles.button_lg
 });
-
+export const inputTextStyle =StyleSheet.create({
+  search :{
+    borderRadius: borderRadius.small,
+    backgroundColor: colors.grayEDEDED,
+    paddingHorizontal:spacing.medium,
+    alignItems:'center'
+  }
+})
 export const iconStyles = StyleSheet.create({
   icon14: { 
     width: 14,
