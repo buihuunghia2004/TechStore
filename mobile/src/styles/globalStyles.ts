@@ -97,6 +97,10 @@ export const iconStyles = StyleSheet.create({
     width: 16, 
     height: 16,
   },
+  icon20: {
+    width: 20, 
+    height: 20,
+  },
   icon24: {
     width: 24, 
     height: 24,
@@ -111,7 +115,7 @@ export const iconStyles = StyleSheet.create({
   },
 })
 
-export const containerStyles =StyleSheet.create({
+export const containerStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
