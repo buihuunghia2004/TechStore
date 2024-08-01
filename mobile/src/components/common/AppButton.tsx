@@ -1,19 +1,19 @@
-import { StyleProp, StyleSheet, Text, TouchableOpacity, ViewStyle } from 'react-native';
+import { Image, ImageProps, StyleProp, Text, TouchableOpacity, ViewStyle } from 'react-native';
 import React from 'react';
-import { buttonStyles, textStyles } from '~/styles/globalStyles';
+import { buttonStyles, iconStyles, textStyles } from '~/styles/globalStyles';
+import { AppButtonStyle } from '~/styles/app/components/common/AppButtonStyle';
 
 interface ButtonProps {
     title?: string;
-    onClick: () => void;
+    onPress: () => void;
     disabled?: boolean;
-    leftIcon?: React.ReactNode;
-    rightIcon?: React.ReactNode;
+    leftIcon?: ImageProps;
+    rightIcon?: ImageProps;
     positionStyle?: StyleProp<ViewStyle>;
 }
-
 const AppButton: React.FC<ButtonProps> = ({
     title,
-    onClick,
+    onPress,
     disabled = false,
     leftIcon,
     rightIcon,
@@ -21,19 +21,15 @@ const AppButton: React.FC<ButtonProps> = ({
 }) => {
     return (
         <TouchableOpacity
-            onPress={!disabled ? onClick : undefined} 
-            style={[buttonStyles.solid, positionStyle, disabled && { opacity: 0.5 }]}
+            onPress={!disabled ? onPress : undefined} 
+            style={[AppButtonStyle.container, positionStyle, disabled && { opacity: 0.5 }]}
             disabled={disabled}
         >
-            {leftIcon}
-            <Text style={textStyles.button_lg}>{title}</Text>
-            {rightIcon}
+            {leftIcon ?  <Image source={leftIcon} style={iconStyles.icon24}/> : null}
+            <Text style={[AppButtonStyle.text]}>{title}</Text>
+            {rightIcon ? <Image  source={rightIcon} style={iconStyles.icon24}/> : null}
         </TouchableOpacity>
     );
 };
-
 export default AppButton;
 
-const styles = StyleSheet.create({
-    // Your styles here if needed
-});

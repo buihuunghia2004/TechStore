@@ -1,4 +1,4 @@
-import { StyleSheet, ViewStyle } from "react-native";
+import { StyleSheet } from "react-native";
 import { colors } from "./colors";
 import { borderRadius, cardElevation, screenPadding, spacing } from "./dimensions";
 
@@ -63,6 +63,7 @@ export const buttonStyles =StyleSheet.create({
     paddingVertical: spacing.small,
     paddingHorizontal: spacing.small,
     alignItems: 'center',
+    justifyContent:'center'
   },
   outline: {
     borderRadius: borderRadius.medium,
@@ -71,11 +72,12 @@ export const buttonStyles =StyleSheet.create({
     paddingVertical: spacing.small,
     paddingHorizontal: spacing.medium,
     alignItems: 'center',
+    justifyContent:'center'
   },
   text: textStyles.button_lg
 });
 
-export const iconStyles = {
+export const iconStyles = StyleSheet.create({
   icon14: { 
     width: 14,
     height: 14,
@@ -96,9 +98,9 @@ export const iconStyles = {
     width: 40, 
     height: 40,
   },
-}
+})
 
-export const containerStyles = {
+export const containerStyles =StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -127,7 +129,7 @@ export const containerStyles = {
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-};
+});
 
 export const globalStyles = StyleSheet.create({
   line: {
