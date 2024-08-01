@@ -11,5 +11,6 @@ export const CheckBoxStyle = StyleSheet.create({
     text:{
         ...textStyles.body_lg,
         marginLeft:16,
+        color:'black'
     }
 })

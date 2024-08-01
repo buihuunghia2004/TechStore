@@ -29,7 +29,6 @@ export const textStyles = StyleSheet.create({
     fontWeight:'500',
   },
   body_sm: {
-    color:colors.primary,
     fontFamily: 'Inter',
     fontSize: 12,
     fontStyle:'normal',
@@ -42,20 +41,16 @@ export const textStyles = StyleSheet.create({
     fontWeight:'200',
   },
   body_lg: {
-    color: 'black',
     fontFamily: 'Inter',
     fontSize: 16,
     fontStyle:'normal',
     fontWeight:'300',
-    textAlign:'center',
-    lineHeight:22
   },
   button_lg: {
     fontFamily: 'Inter',
     fontSize: 14,
     fontStyle:'normal',
     fontWeight:'400',
-    color:'white'
   },
   caption:{
     fontFamily: 'Inter',

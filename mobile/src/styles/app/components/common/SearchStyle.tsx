@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "~/styles/colors";
 import { inputTextStyle, textStyles } from "~/styles/globalStyles";
 
 export const SearchStyle = StyleSheet.create({
@@ -16,6 +17,7 @@ export const SearchStyle = StyleSheet.create({
         ...textStyles.body_sm,
         flex:1,
         textAlign: 'left',
+        color:colors.primary
     },
     buttonBack:{
         marginRight:10
