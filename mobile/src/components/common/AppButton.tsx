@@ -7,6 +7,7 @@ interface ButtonProps {
     title?: string;
     onPress: () => void;
     disabled?: boolean;
+    outline?: boolean;
     leftIcon?: ImageProps;
     rightIcon?: ImageProps;
     positionStyle?: StyleProp<ViewStyle>;
@@ -15,19 +16,25 @@ const AppButton: React.FC<ButtonProps> = ({
     title,
     onPress,
     disabled = false,
+    outline,
     leftIcon,
     rightIcon,
     positionStyle,
 }) => {
     return (
         <TouchableOpacity
-            onPress={!disabled ? onPress : undefined} 
-            style={[AppButtonStyle.container, positionStyle, disabled && { opacity: 0.5 }]}
+            style={[
+                AppButtonStyle.container,
+                positionStyle,
+                disabled && AppButtonStyle.disabled,
+                outline ? buttonStyles.outline : buttonStyles.solid,
+            ]}
+            onPress={onPress}
             disabled={disabled}
         >
-            {leftIcon ?  <Image source={leftIcon} style={iconStyles.icon24}/> : null}
-            <Text style={[AppButtonStyle.text]}>{title}</Text>
-            {rightIcon ? <Image  source={rightIcon} style={iconStyles.icon24}/> : null}
+            {leftIcon && <Image source={leftIcon} style={iconStyles.icon24} />}
+            <Text style={outline ? AppButtonStyle.textOutline : AppButtonStyle.text}>{title}</Text>
+            {rightIcon && <Image source={rightIcon} style={iconStyles.icon24} />}
         </TouchableOpacity>
     );
 };
