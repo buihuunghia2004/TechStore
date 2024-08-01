@@ -1,9 +1,10 @@
 export const assets = {
   icon: {
-    logo: require('~/assets/icons/logo.png'),
+    sms: require('~/assets/icons/sms.png'),
+    google: require('~/assets/icons/google.png')
   },
   image:{
-    product_demo:require('~/assets/images/product_demo.png'),
-    banner_demo:require('~/assets/images/banner_demo.png'),
+    product_demo:require('~/assets/images/product-demo.png'),
+    banner_demo:require('~/assets/images/banner-demo.png'),
   }
 }

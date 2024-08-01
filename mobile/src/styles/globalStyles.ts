@@ -3,7 +3,7 @@ import { colors } from "./colors";
 import { borderRadius, cardElevation, screenPadding, spacing } from "./dimensions";
 
 
-export const textStyles = {
+export const textStyles = StyleSheet.create({
   h1: {
     fontFamily: 'Inter',
     fontSize: 24,
@@ -46,6 +46,7 @@ export const textStyles = {
     fontSize: 14,
     fontStyle:'normal',
     fontWeight:'400',
+    color:'white'
   },
   caption:{
     fontFamily: 'Inter',
@@ -53,28 +54,30 @@ export const textStyles = {
     fontStyle:'normal',
     fontWeight:'500',
   }
-};
+});
 
-export const buttonStyles = {
+export const buttonStyles =StyleSheet.create({
   solid: {
     backgroundColor: colors.primary,
     borderRadius: borderRadius.medium,
     paddingVertical: spacing.small,
     paddingHorizontal: spacing.small,
     alignItems: 'center',
+    justifyContent:'center'
   },
   outline: {
     borderRadius: borderRadius.medium,
     borderWidth: 1,
     borderColor: colors.primary,
     paddingVertical: spacing.small,
-    paddingHorizontal: spacing.medium,
+    paddingHorizontal: spacing.small,
     alignItems: 'center',
+    justifyContent:'center'
   },
   text: textStyles.button_lg
-};
+});
 
-export const iconStyles = {
+export const iconStyles = StyleSheet.create({
   icon14: { 
     width: 14,
     height: 14,
@@ -95,9 +98,9 @@ export const iconStyles = {
     width: 40, 
     height: 40,
   },
-}
+})
 
-export const containerStyles = {
+export const containerStyles =StyleSheet.create({
   container: {
     flex: 1,
   },
@@ -126,12 +129,12 @@ export const containerStyles = {
     shadowOpacity: 0.2,
     shadowRadius: 4,
   },
-};
+});
 
 export const globalStyles = StyleSheet.create({
   line: {
     flex: 1,
     maxHeight: 1,
     backgroundColor: colors.gray2D2D2D,
-  }
+  },
 });
