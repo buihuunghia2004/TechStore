@@ -1,9 +1,9 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, ViewStyle } from "react-native";
 import { colors } from "./colors";
 import { borderRadius, cardElevation, screenPadding, spacing } from "./dimensions";
 
 
-export const textStyles = {
+export const textStyles = StyleSheet.create({
   h1: {
     fontFamily: 'Inter',
     fontSize: 24,
@@ -46,6 +46,7 @@ export const textStyles = {
     fontSize: 14,
     fontStyle:'normal',
     fontWeight:'400',
+    color:'white'
   },
   caption:{
     fontFamily: 'Inter',
@@ -53,9 +54,9 @@ export const textStyles = {
     fontStyle:'normal',
     fontWeight:'500',
   }
-};
+});
 
-export const buttonStyles = {
+export const buttonStyles =StyleSheet.create({
   solid: {
     backgroundColor: colors.primary,
     borderRadius: borderRadius.medium,
@@ -72,7 +73,7 @@ export const buttonStyles = {
     alignItems: 'center',
   },
   text: textStyles.button_lg
-};
+});
 
 export const iconStyles = {
   icon14: { 
@@ -133,5 +134,5 @@ export const globalStyles = StyleSheet.create({
     flex: 1,
     maxHeight: 1,
     backgroundColor: colors.gray2D2D2D,
-  }
+  },
 });
