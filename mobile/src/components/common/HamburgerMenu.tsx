@@ -63,7 +63,7 @@ const HamburgerMenu: React.FC<HamburgerProps> = ({
                     <View style={HamburgerMenuStyle.menuContainer}>
                         {data?.map((item) => (
                             <TouchableOpacity key={item.id} style={HamburgerMenuStyle.itemContainer} onPress={onItemPress}>
-                                <Image source={{ uri: item.icon }} style={iconStyles.icon20} />
+                                {item.icon && <Image source={{ uri: item.icon }} style={iconStyles.icon20}/>}
                                 <Text style={textStyles.body_md}>{item.name}</Text>
                             </TouchableOpacity>
                         ))}
