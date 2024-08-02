@@ -3,6 +3,7 @@
 export const spacing = {
   tiny: 4,
   small: 8,
+  smallMedium:12,
   medium: 16,
   large: 24,
   extraLarge: 32,

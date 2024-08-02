@@ -88,6 +88,14 @@ export const inputTextStyle =StyleSheet.create({
     alignItems:'center'
   }
 })
+export const dropDownStyle = StyleSheet.create({
+  hambuger:{
+    borderRadius: borderRadius.small,
+    paddingHorizontal:spacing.smallMedium,
+    paddingVertical:spacing.tiny,
+
+  }
+})
 export const iconStyles = StyleSheet.create({
   icon14: { 
     width: 14,
