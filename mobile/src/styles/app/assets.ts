@@ -11,6 +11,10 @@ export const assets = {
     google: require('~/assets/icons/google.png'),
     search : require('~/assets/icons/button/search-normal.png'),
     arrowBack : require('~/assets/icons/arrows/arrow-left.png'),
+    arrowDown: require('~/assets/icons/arrows/arrow-down-black.png'),
+    arrowDownBlue:require('~/assets/icons/arrows/arrow-down-blue.png'),
+    arrowUp : require('~/assets/icons/arrows/arrow-up.png'),
+    arrowUpBlue : require('~/assets/icons/arrows/arrow-up-blue.png'),
     //trigger
     checkBook :require('~/assets/icons/trigger/check-box-true.png'),
     unCheckBook :require('~/assets/icons/trigger/check-box-false.png')
