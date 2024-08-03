@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "./colors";
-import { borderRadius, cardElevation, fontSize, screenPadding, spacing } from "./dimensions";
+import { borderRadius, cardElevation, fontSize, screenPadding, spacing, TabHeight } from "./dimensions";
 
 export const textStyles = StyleSheet.create({
   h1: {
@@ -96,6 +96,7 @@ export const dropDownStyle = StyleSheet.create({
 
   }
 })
+
 export const iconStyles = StyleSheet.create({
   icon14: { 
     width: 14,
