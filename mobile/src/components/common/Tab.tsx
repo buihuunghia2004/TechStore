@@ -1,88 +1,70 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
-import React, { useEffect, useState } from 'react'
-import { colors } from '~/styles/colors';
-import { assets } from '~/styles/app/assets';
-import { TabStyle } from '~/styles/app/components/common/TabStyle';
+import {
+  Image,
+  StyleProp,
+  Text,
+  TouchableOpacity,
+  View,
+  ViewStyle,
+} from 'react-native';
+import React, {useEffect, useState} from 'react';
+import {colors} from '~/styles/colors';
+import {assets} from '~/styles/app/assets';
+import {TabStyle} from '~/styles/app/components/common/TabStyle';
 
 interface TabProps {
-    type: 'Navbar' | 'ModalTitle' | 'Register';
+  type: 'Navbar' | 'ModalTitle' | 'Register';
+  data: string[];
+  onItemPress?: (key: string) => void;
+  positionStyle?: StyleProp<ViewStyle>;
 }
-interface TabItem {
-    key: string;
-    labels: string;
-}
 
-const tabs: { [key: string]: TabItem[] } = {
-    Navbar: [
-        { key: '1', labels: 'TechnoCal Details' },
-        { key: '2', labels: 'Similar Products' },
-        { key: '3', labels: 'Comments' }
-    ],
-    ModalTitle: [
-        { key: '1', labels: 'Images' },
-        { key: '2', labels: 'Videos' },
-    ],
-    Register: [
-        { key: '1', labels: 'Login' },
-        { key: '2', labels: 'Register' }
-    ]
-};
-
-const Tab: React.FC<TabProps> = ({ type }) => {
-    const [currentItem, setCurrentItem] = useState<string | null>(null)
-
-    useEffect(() => {
-        setCurrentItem(tabs[type][0].key);
-    }, [type]);
-
-    const renderTab = (item: TabItem) => (
+const Tab: React.FC<TabProps> = ({type, data}) => {
+  const [currentItem, setCurrentItem] = useState<any | null>(null);
+  useEffect(() => {
+    setCurrentItem(data[0]);
+  }, [type]);
+  return (
+    <View
+      style={
+        type == 'ModalTitle'
+          ? TabStyle.containerModal
+          : type == 'Register'
+          ? TabStyle.containerRegister
+          : TabStyle.containerNavbar
+      }>
+      {data.map((item, index) => (
         <TouchableOpacity
-            key={item.key}
-            style={TabStyle.itemContainer}
-            onPress={() => setCurrentItem(item.key)}
-        >
-            <Text style={[getTextStyle(type),currentItem === item.key && { color: colors.primary }]}>{item.labels}</Text>
-            <View style={[
-                TabStyle.line,
-                currentItem === item.key && { backgroundColor: colors.primary }
+          key={index}
+          style={TabStyle.itemContainer}
+          onPress={() => setCurrentItem(item)}>
+          <Text
+            style={[
+              type == 'ModalTitle'
+                ? TabStyle.textModalTitle
+                : type == 'Register'
+                ? TabStyle.textRegister
+                : TabStyle.textNavbar,
+              currentItem === item && {color: colors.primary},
+            ]}>
+            {item}
+          </Text>
+          <View
+            style={[
+              TabStyle.line,
+              currentItem === item && {backgroundColor: colors.primary},
             ]}></View>
         </TouchableOpacity>
-    )
-    const getTextStyle = (type: 'Navbar' | 'ModalTitle' | 'Register') => {
-        switch (type) {
-            case 'Navbar':
-                return TabStyle.textNavbar
-            case 'ModalTitle':
-                return TabStyle.textModalTitle;
-            case 'Register':
-                return TabStyle.textRegister;
-            default:
-                return {};
-        }
-    }
-    const getContainerStyle = (type: 'Navbar' | 'ModalTitle' | 'Register') => {
-        switch (type) {
-            case 'Navbar':
-                return TabStyle.containerNavbar;
-            case 'ModalTitle':
-                return TabStyle.containerModal;
-            case 'Register':
-                return TabStyle.containerRegister;
-            default:
-                return {};
-        }
-    };
-    return (
-        <View style={getContainerStyle(type)}>
-            {tabs[type].map(renderTab)}
-            {type == 'ModalTitle' &&
-                <View style={TabStyle.buttonClose}>
-                    <Image style={TabStyle.iconClose} source={assets.icon.close_circle_inactive} />
-                    <View style={TabStyle.line}></View>
-                </View>}
+      ))}
+      {type == 'ModalTitle' && (
+        <View style={TabStyle.buttonClose}>
+          <Image
+            style={TabStyle.iconClose}
+            source={assets.icon.close_circle_inactive}
+          />
+          <View style={TabStyle.line}></View>
         </View>
-    )
-}
-export default Tab
-
-const styles = StyleSheet.create({})
+      )}
+    </View>
+  );
+};
+export default Tab;
