@@ -28,6 +28,12 @@ export const textStyles = StyleSheet.create({
     fontStyle:'normal',
     fontWeight:'500',
   },
+  body_xs: {
+    fontFamily: 'Inter',
+    fontSize: 10,
+    fontStyle:'normal',
+    fontWeight:'300',
+  },
   body_sm: {
     fontFamily: 'Inter',
     fontSize: 12,

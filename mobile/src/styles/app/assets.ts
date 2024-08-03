@@ -13,7 +13,9 @@ export const assets = {
     arrowBack : require('~/assets/icons/arrows/arrow-left.png'),
     //trigger
     checkBook :require('~/assets/icons/trigger/check-box-true.png'),
-    unCheckBook :require('~/assets/icons/trigger/check-box-false.png')
+    unCheckBook :require('~/assets/icons/trigger/check-box-false.png'),
+    //arrow
+    arrow_right_sm:require('~/assets/icons/arrows/arrow-right-sm.png'),
   },
   image:{
     product_demo:require('~/assets/images/product-demo.png'),
