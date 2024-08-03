@@ -34,6 +34,10 @@ export const buttonHeight = {
   medium: 40,
   large: 48,
 };
+export const TabHeight = {
+  small: 20,
+  medium: 40,
+};
 
 export const inputHeight = {
   small: 32,
