@@ -21,9 +21,6 @@ export const HamburgerMenuStyle = StyleSheet.create({
         ...textStyles.body_lg,
         color:colors.gray444444
     },
-    menuContainer:{
-        flex:1
-    },
     itemContainer:{
         flexDirection: 'row',
         alignItems: 'center',

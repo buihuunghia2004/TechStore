@@ -102,6 +102,13 @@ export const dropDownStyle = StyleSheet.create({
 
   }
 })
+export const switchStyle = StyleSheet.create({
+  switchButton:{
+    borderRadius:borderRadius.extraLarge,
+    width:48,
+    height:24,
+  },
+})
 
 export const iconStyles = StyleSheet.create({
   icon14: { 
