@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, TextInput, FlatList, Text, TouchableOpacity, Image, Keyboard } from 'react-native';
 import { iconStyles } from '~/styles/globalStyles';
-import { SearchStyle } from '~/styles/app/components/common/SearchStyle';
+import { SearchStyle } from '~/styles/components/common/SearchStyle';
 import { assets } from '~/styles/app/assets';
 
 interface SearchProps {

@@ -9,7 +9,7 @@ import {
 import React, {useEffect, useState} from 'react';
 import {colors} from '~/styles/colors';
 import {assets} from '~/styles/app/assets';
-import {TabStyle} from '~/styles/app/components/common/TabStyle';
+import {TabStyle} from '~/styles/components/common/TabStyle';
 
 interface TabProps {
   type: 'Navbar' | 'ModalTitle' | 'Register';

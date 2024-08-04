@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Animated, Easing, Image, Text, TouchableOpacity, View } from 'react-native';
 import { assets } from '~/styles/app/assets';
-import { HamburgerMenuStyle } from '~/styles/app/components/common/HamburgerMenuStyle';
+import { HamburgerMenuStyle } from '~/styles/components/common/HamburgerMenuStyle';
 import { iconStyles, textStyles } from '~/styles/globalStyles';
 
 interface Content {

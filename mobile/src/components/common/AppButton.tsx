@@ -1,7 +1,7 @@
 import { Image, ImageProps, StyleProp, Text, TouchableOpacity, ViewStyle } from 'react-native';
 import React from 'react';
 import { buttonStyles, iconStyles, textStyles } from '~/styles/globalStyles';
-import { AppButtonStyle } from '~/styles/app/components/common/AppButtonStyle';
+import { AppButtonStyle } from '~/styles/components/common/AppButtonStyle';
 
 interface ButtonProps {
     title?: string;
