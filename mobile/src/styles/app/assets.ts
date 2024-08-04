@@ -5,6 +5,7 @@ export const assets = {
     close_circle_inactive: require('~/assets/icons/button/close-circle-inactive.png'),
     close_circle_focus: require('~/assets/icons/button/close-circle-focus.png'),
     close_circle_error: require('~/assets/icons/button/close-circle-error.png'),
+    close_square: require('~/assets/icons/button/close-square.png'),
     eye_open: require('~/assets/icons/trigger/eye-open.png'),
     eye_slash: require('~/assets/icons/trigger/eye-slash.png'),
     sms: require('~/assets/icons/sms.png'),
