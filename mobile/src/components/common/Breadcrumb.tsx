@@ -1,6 +1,6 @@
 import { Image, StyleProp, Text, TouchableOpacity, View, ViewStyle } from 'react-native'
 import React from 'react'
-import { BreadcrumbStyle } from '~/styles/app/components/common/BreadcrumbStyle'
+import { BreadcrumbStyle } from '~/styles/components/common/BreadcrumbStyle'
 import { assets } from '~/styles/app/assets'
 import { iconStyles } from '~/styles/globalStyles'
 interface Props {

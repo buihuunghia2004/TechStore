@@ -1,7 +1,7 @@
 import { Image, ImageProps, StyleProp, StyleSheet, TouchableOpacity, ViewStyle } from 'react-native'
 import React from 'react'
 import { iconStyles } from '~/styles/globalStyles';
-import { AppButtonStyle } from '~/styles/app/components/common/AppButtonStyle';
+import { AppButtonStyle } from '~/styles/components/common/AppButtonStyle';
 
 interface IconButtonProps {
     onPress?: () => void,

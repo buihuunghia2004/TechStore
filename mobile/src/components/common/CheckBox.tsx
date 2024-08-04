@@ -1,7 +1,7 @@
 import { Image, StyleProp, Text, TouchableOpacity, ViewStyle } from 'react-native'
 import React from 'react'
 import { iconStyles, textStyles } from '~/styles/globalStyles'
-import { CheckBoxStyle } from '~/styles/app/components/common/CheckBoxStyle';
+import { CheckBoxStyle } from '~/styles/components/common/CheckBoxStyle';
 import { assets } from '~/styles/app/assets';
 
 interface CheckBoxProps {
