@@ -1,7 +1,6 @@
 import React, {useRef, useState} from 'react';
 import {
   Animated,
-  Easing,
   Image,
   ImageProps,
   StyleProp,
@@ -13,7 +12,7 @@ import {
 import {assets} from '~/styles/app/assets';
 import {HamburgerMenuStyle} from '~/styles/components/common/HamburgerMenuStyle';
 import {iconStyles, textStyles} from '~/styles/globalStyles';
-
+import useAnimation from '~/hooks/animation/UseDropdown';
 interface Content {
   id: string;
   name: string;
@@ -25,7 +24,7 @@ interface HamburgerProps {
   type?: 'normal' | 'footer';
   onItemPress?: () => void;
   onPress?: () => void;
-  positionStyle: StyleProp<ViewStyle>
+  positionStyle?: StyleProp<ViewStyle>
 }
 const HamburgerMenu: React.FC<HamburgerProps> = ({
   title,
@@ -36,28 +35,10 @@ const HamburgerMenu: React.FC<HamburgerProps> = ({
   positionStyle
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const animationValue = useRef(new Animated.Value(0)).current;
-
+  const {heightInterpolate, animatedStyle} = useAnimation(isExpanded);
   const toggleExpanded = () => {
     setIsExpanded(prev => !prev);
-    Animated.timing(animationValue, {
-      toValue: isExpanded ? 0 : 1,
-      duration: 300,
-      easing: Easing.linear,
-      useNativeDriver: false,
-    }).start();
     if (onPress) onPress();
-  };
-  const heightInterpolate = animationValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: [0, 40 * data.length],
-  });
-  const rotateInterpolate = animationValue.interpolate({
-    inputRange: [0, 1],
-    outputRange: ['0deg', '180deg'],
-  });
-  const animatedStyle = {
-    transform: [{rotate: rotateInterpolate}],
   };
   return (
     <View style={HamburgerMenuStyle.container}>
