@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import { colors } from "~/styles/colors";
 import { textStyles } from "~/styles/globalStyles";
 
 export const CheckBoxStyle = StyleSheet.create({
@@ -11,6 +12,11 @@ export const CheckBoxStyle = StyleSheet.create({
     text:{
         ...textStyles.body_lg,
         marginLeft:16,
-        color:'black'
+        color:'black',
+    },
+    subText:{
+        ...textStyles.body_sm,
+        color:colors.grayB4B4B4
     }
+    
 })

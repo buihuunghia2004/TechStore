@@ -4,9 +4,11 @@ import {
   Easing,
   Image,
   ImageProps,
+  StyleProp,
   Text,
   TouchableOpacity,
   View,
+  ViewStyle,
 } from 'react-native';
 import {assets} from '~/styles/app/assets';
 import {HamburgerMenuStyle} from '~/styles/components/common/HamburgerMenuStyle';
@@ -23,6 +25,7 @@ interface HamburgerProps {
   type?: 'normal' | 'footer';
   onItemPress?: () => void;
   onPress?: () => void;
+  positionStyle: StyleProp<ViewStyle>
 }
 const HamburgerMenu: React.FC<HamburgerProps> = ({
   title,
@@ -30,6 +33,7 @@ const HamburgerMenu: React.FC<HamburgerProps> = ({
   type,
   onPress,
   onItemPress,
+  positionStyle
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
   const animationValue = useRef(new Animated.Value(0)).current;
@@ -55,13 +59,12 @@ const HamburgerMenu: React.FC<HamburgerProps> = ({
   const animatedStyle = {
     transform: [{rotate: rotateInterpolate}],
   };
-
   return (
     <View style={HamburgerMenuStyle.container}>
       <TouchableOpacity
         onPress={toggleExpanded}
         activeOpacity={1}
-        style={HamburgerMenuStyle.header}>
+        style={[HamburgerMenuStyle.header,positionStyle]}>
         <Text
           style={
             isExpanded ? HamburgerMenuStyle.text : HamburgerMenuStyle.textBlue
@@ -103,5 +106,4 @@ const HamburgerMenu: React.FC<HamburgerProps> = ({
     </View>
   );
 };
-
 export default HamburgerMenu;
