@@ -1,13 +1,14 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, View } from 'react-native'
 import React from 'react'
-import AppButton from '~/components/common/AppButton'
-import { assets } from '~/styles/app/assets'
-import CheckBox from '~/components/common/CheckBox'
+import DropPrice from '~/components/common/DropPrice'
 
 const App = () => {
+  const handlePriceChange = (minPrice: number, maxPrice: number) => {
+    console.log(`Min Price: ${minPrice}, Max Price: ${maxPrice}`);
+  };
   return (
-    <View>
-      <CheckBox checked={true} title='1000' sub='(999)'/>
+    <View style={styles.container}>
+      <DropPrice title='Price' max={100} min={0} onPriceChange={handlePriceChange} />
     </View>
   )
 }
