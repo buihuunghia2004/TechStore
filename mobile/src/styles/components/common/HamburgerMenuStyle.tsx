@@ -11,7 +11,7 @@ export const HamburgerMenuStyle = StyleSheet.create({
         height:40,
         justifyContent:'space-between',
         alignItems:'center',
-        flexDirection:'row'
+        flexDirection:'row',
     },
     text:{
         ...textStyles.body_lg,
