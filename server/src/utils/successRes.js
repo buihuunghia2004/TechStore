@@ -1,6 +1,6 @@
 import { StatusCodes } from "http-status-codes"
 
-export const successRes = (res,data,message) =>{
+export const SuccessRes = (res,data,message) =>{
   const response = {
     status:true,
     data:data,

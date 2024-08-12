@@ -2,5 +2,13 @@ import 'dotenv/config'
 
 export const env = {
     APP_PORT: process.env.APP_PORT,
-    BUILD_MODE: process.env.BUILD_MODE
+    BUILD_MODE: process.env.BUILD_MODE,
+    MONGODB_URI: process.env.MONGODB_URI,
+    ADMIN_EMAIL: process.env.ADMIN_EMAIL,
+    PASSWORD_ADMIN_EMAIL: process.env.PASSWORD_ADMIN_EMAIL,
+    CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+    CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY,
+    CLOUDINARY_SECRET_KEY: process.env.CLOUDINARY_SECRET_KEY,
+    API_KEY_SMS_VONAGE: process.env.API_KEY_SMS_VONAGE,
+    API_SECRET_SMS_VONAGE: process.env.API_SECRET_SMS_VONAGE
 }

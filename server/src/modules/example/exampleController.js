@@ -1,4 +1,4 @@
-import { successRes } from "~/utils/successRes"
+import { successRes } from "~/utils/SuccessRes"
 import { exampleService } from "./exampleService"
 
 const method = async (req, res, next) => {
