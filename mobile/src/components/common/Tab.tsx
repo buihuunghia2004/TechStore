@@ -17,7 +17,6 @@ interface TabProps {
   onItemPress?: (key: string) => void;
   positionStyle?: StyleProp<ViewStyle>;
 }
-
 const Tab: React.FC<TabProps> = ({type, data}) => {
   const [currentItem, setCurrentItem] = useState<any | null>(null);
   useEffect(() => {

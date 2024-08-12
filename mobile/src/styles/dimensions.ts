@@ -20,6 +20,8 @@ export const borderRadius = {
   small: 4,
   medium: 8,
   large: 16,
+  extraLarge:32,
+  max:50
 };
 
 export const iconSize = {
@@ -38,7 +40,6 @@ export const TabHeight = {
   small: 20,
   medium: 40,
 };
-
 export const inputHeight = {
   small: 32,
   medium: 40,

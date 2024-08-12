@@ -11,7 +11,7 @@ export const HamburgerMenuStyle = StyleSheet.create({
         height:40,
         justifyContent:'space-between',
         alignItems:'center',
-        flexDirection:'row'
+        flexDirection:'row',
     },
     text:{
         ...textStyles.body_lg,
@@ -20,9 +20,6 @@ export const HamburgerMenuStyle = StyleSheet.create({
     textBlue:{
         ...textStyles.body_lg,
         color:colors.gray444444
-    },
-    menuContainer:{
-        flex:1
     },
     itemContainer:{
         flexDirection: 'row',
