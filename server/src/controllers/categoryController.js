@@ -1,8 +1,6 @@
-
-import sendSMS from '~/helpers/sendSMS'
-import { categoryService } from '~/services/categoryService'
-import { PageRequest } from '~/utils/PageRequest'
-import { SuccessRes } from '~/utils/SuccessRes'
+import { categoryService } from '../services/categoryService.js'
+import { PageRequest } from '../utils/PageRequest.js'
+import { SuccessRes } from '../utils/SuccessRes.js'
 
 const findById = async (req, res, next) => {
   const { id } = req.params
@@ -25,7 +23,6 @@ const findOne = async (req, res, next) => {
 }
 
 const findMany = async (req, res, next) => {
-  sendSMS(84966913560, "test")
   const pageRequest = PageRequest({
     isPagination: req.query.isPagination,
     page: req.query.page,

@@ -16,7 +16,7 @@ const ARRAY = (object) => {
   return Joi.array().items(object)
 }
 
-export const validConst = {
+export const ValidConst = {
   STRING, NUMBER, BOOLEAN, ARRAY,
   OBJECT_ID, PHONENUMBER, EMAIL, URL
 }

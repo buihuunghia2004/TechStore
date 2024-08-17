@@ -1,5 +1,5 @@
-import { Category } from "~/models/categoryModel";
-import { SuccessRes } from "~/utils/SuccessRes";
+import { Category } from "../models/categoryModel.js";
+import { SuccessRes } from "../utils/SuccessRes.js";
 
 const findById = async (id, options) => {
   const { populate = [], projection = {} } = options || {};

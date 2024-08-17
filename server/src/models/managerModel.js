@@ -32,5 +32,24 @@ const managerSchema = new Schema(
   },
   { timestamps: true }
 );
-
+export const ManagerRelationships= {
+  roles: [
+    {
+      $lookup: {
+        from: 'managerroles',
+        localField: "_id",
+        foreignField: "managerId",
+        as: 'managerroles',
+      },
+    },
+    {
+      $lookup: {
+        from: 'roles',
+        localField: "managerroles.role",
+        foreignField: "name",
+        as: 'roles',
+      }
+    }
+  ],
+};
 export const Manager = mongoose.model("Manager", managerSchema);

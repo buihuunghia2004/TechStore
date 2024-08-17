@@ -1,5 +1,4 @@
-exports = {
-  async up(db, client) {
+  export const up = async (db, client) => {
     const brands = [
       { name: "Apple", image: "https://cdn2.fptshop.com.vn/unsafe/48x0/filters:quality(100)/small/133_logo_apple_a96d38701f.png" },
       { name: "Samsung", image: "https://cdn2.fptshop.com.vn/unsafe/48x0/filters:quality(100)/small/133_logo_samsung_a96d38701f.png" },
@@ -8,12 +7,11 @@ exports = {
     ]
 
     await db.collection("brands").insertMany(brands);
-  },
+  }
 
-  async down(db, client) {
+  export const down = async (db, client) => {
     const brandNames = ["Apple", "Samsung", "Huawei", "Xiaomi"];
     await db.collection("brands").deleteMany({
       name: { $in: brandNames },
     });
   }
-};

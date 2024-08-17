@@ -1,26 +1,22 @@
-export const PageRequest = ({
-  isPagination = true,
-  page = 1,
-  size = 20,
-  sort = '_id-asc'
-}) => {
-  let [sortBy, sortOrder] = sort.split('-')
-
-  if (!isPagination) {
+export const PageRequest = (req) => {
+  const { pagination = true, page = 0, size = 20, sort = "+_id" } = req;
+  let sortOrder = sort.slice(0, 1);
+  let sortBy = sort.slice(1);
+  if (!pagination) {
     return {
-      isPagination,
+      pagination,
       sort: {
-        [sortBy]: sortOrder === 'asc' ? 1 : -1
-      }
-    }
+        [sortBy]: sortOrder === "+" ? 1 : -1,
+      },
+    };
   }
 
   return {
-    isPagination,
-    skip: (page - 1) * size,
+    pagination,
+    skip: page * size,
     limit: Number.parseInt(size),
     sort: {
-      [sortBy]: sortOrder === 'asc' ? 1 : -1
-    }
-  }
-}
+      [sortBy]: sortOrder === "+" ? 1 : -1,
+    },
+  };
+};

@@ -1,11 +1,12 @@
 import express from "express";
-import { env } from "./config/environment";
 import cors from "cors";
 import bodyParser from "body-parser";
 import morgan from "morgan";
-import { errorHandlingMiddleware } from "./middlewares/errorHandlingMiddleware ";
-import { connectdb } from "./config/mongodb";
-import { initAppRoutes } from "./routes/initAppRoutes";
+// import { initAppRoutes } from "./routes/initAppRoutes";
+import { env } from "./config/environment.js";
+import { errorHandlingMiddleware } from "./middlewares/errorHandlingMiddleware.js"
+import { connectdb } from "./config/mongodb.js";
+import { initAppRoutes } from "./routes/initAppRoutes.js";
 
 //express
 const app = express();

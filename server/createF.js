@@ -35,7 +35,7 @@ export const ${upperFirst(name)} = mongoose.model('${upperFirst(
 //Content
 const contentValidate = (name) => {
   let content = `const Joi = require("joi")
-import { validConst as vc } from "~/utils/validConst"
+import { validConst as vc } from "../utils/validConst.js"
 
 const validate = async (req, res, next) => {
   const correct = Joi.object({
@@ -54,9 +54,9 @@ export const ${name}Validation = {
   return content;
 };
 const contentController = (name) => {
-  let content = `import { PageRequest } from '~/utils/PageRequest'
-import { SuccessRes } from '~/utils/SuccessRes'
-import { ${name}Service } from '~/services/${name}Service'
+  let content = `import { PageRequest } from '../utils/PageRequest.js'
+import { SuccessRes } from '../utils/SuccessRes.js'
+import { ${name}Service } from '../services/${name}Service.js'
 
 const findById = async (req, res, next) => {
   const { id } = req.params
@@ -93,9 +93,9 @@ const findMany = async (req, res, next) => {
   }
 }
 
-const create = async (req, res, next) => {
+const insertOne = async (req, res, next) => {
   try {
-    const result = await ${name}Service.create(req.body)
+    const result = await ${name}Service.insertOne(req.body)
     SuccessRes(res, result, "Success")
   } catch (error) {
     next(error)
@@ -125,14 +125,14 @@ export const ${name}Controller ={
   findById,
   findOne,
   findMany,
-  create,
+  insertOne,
   updateById,
   deleteById
 }`;
   return content;
 };
 const contentService = (name) => {
-  let content = `import { ${upperFirst(name)} } from "~/models/${name}Model";
+  let content = `import { ${upperFirst(name)} } from "../models/${name}Model.js";
 const findById = async (id,options) => {
     const {populate=[], projection={} } = options || {}
     const result = await ${upperFirst(name)}.findById(id,projection)
@@ -163,7 +163,7 @@ const findMany = async (options) => {
   }
   return ${upperFirst(name)}DTO.fromEntities(await query.exec());
 }
-const create = async (data) => {
+const insertOne = async (data) => {
   const ${name} = new ${upperFirst(name)}(data);
   return await ${name}.save();
 }
@@ -178,7 +178,7 @@ export const ${name}Service ={
     findById,
     findOne,
     findMany,
-    create,
+    insertOne,
     updateById,
     deleteById
 }`;

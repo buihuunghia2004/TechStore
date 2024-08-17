@@ -1,7 +1,6 @@
-import RoleDTO from '~/services/dto/RoleDTO'
-import { roleService } from '~/services/roleService'
-import { PageRequest } from '~/utils/PageRequest'
-import { SuccessRes } from '~/utils/SuccessRes'
+import { roleService } from '../services/roleService.js'
+import { PageRequest } from '../utils/PageRequest.js'
+import { SuccessRes } from '../utils/SuccessRes.js'
 
 const findById = async (req, res, next) => {
   const { id } = req.params

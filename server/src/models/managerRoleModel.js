@@ -7,9 +7,8 @@ const managerRoleSchema = new Schema({
     ref: "Manager",
     required: true,
   },
-  roleId: {
-    type: Schema.Types.ObjectId,
-    ref: "Role",
+  role: {
+    type: String,
     required: true,
   },
 });

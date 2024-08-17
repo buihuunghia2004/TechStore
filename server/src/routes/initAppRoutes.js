@@ -1,9 +1,12 @@
-import { categoryRoute } from "./categoryRoute";
-import { managerRoute } from "./managerRoute";
-import { roleRoute } from "./roleRoute";
+import { authRoute } from "./authRoute.js";
+import { categoryRoute } from "./categoryRoute.js";
+import { managerRoute } from "./managerRoute.js";
 
 export const initAppRoutes = (app) => {
-   app.use('/api/category', categoryRoute);
-   app.use('/api/role', roleRoute);
-   app.use('/api/manager', managerRoute);
+   app.use('/api/auth', authRoute);
+   app.use('/api/categories', categoryRoute);
+   app.use('/api/managers', managerRoute);
+   /**
+    * 
+    */
 }

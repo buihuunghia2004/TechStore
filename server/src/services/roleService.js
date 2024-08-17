@@ -1,5 +1,4 @@
-import { Role } from "~/models/roleModel";
-import RoleDTO from "./dto/RoleDTO";
+import { Role } from "../models/roleModel.js";
 
 const findById = async (id, options) => {
   const { populate = [], projection = {} } = options || {};
