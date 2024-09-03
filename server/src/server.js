@@ -1,33 +1,32 @@
-import express from 'express'
-import { env } from './config/environment'
-import cors from 'cors'
-import corsOptions from './config/cors'
-import bodyParser from 'body-parser'
-import morgan from 'morgan'
-import { exampleRoute } from './routes/exampleRoute'
-import { errorHandlingMiddleware } from './middlewares/errorHandlingMiddleware '
-
+import express from "express";
+import cors from "cors";
+import bodyParser from "body-parser";
+import morgan from "morgan";
+// import { initAppRoutes } from "./routes/initAppRoutes";
+import { env } from "./config/environment.js";
+import { errorHandlingMiddleware } from "./middlewares/errorHandlingMiddleware.js"
+import { connectdb } from "./config/mongodb.js";
+import { initAppRoutes } from "./routes/initAppRoutes.js";
 
 //express
-const app = express()
+const app = express();
+//connect db
+connectdb();
 
 //cors
-app.use(cors(corsOptions))
-app.use(bodyParser.json())
-app.use(morgan('dev'))
+app.use(cors());
+app.use(bodyParser.json());
+app.use(morgan("dev"));
 
 // Cho phép lý dữ liệu từ form method POST
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
 
-//routes
-app.use('/example',exampleRoute)
+//init server routes
+initAppRoutes(app);
 
-app.get('/',(req, res) => {
-    res.send('ok')
-})
 //middleware error handler
-app.use(errorHandlingMiddleware)
+app.use(errorHandlingMiddleware);
 
 app.listen(env.APP_PORT, () => {
-    console.log('Listen port '+ env.APP_PORT);
-})
+  console.log("Listen port " + env.APP_PORT);
+});

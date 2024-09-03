@@ -1,3 +1,4 @@
+
 import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import AppHeader from '~/components/common/AppHeader';
@@ -14,6 +15,7 @@ export default App;
 
 const styles = StyleSheet.create({
   container: {
+
     flex: 1,
     paddingHorizontal: 24,
   },
@@ -21,3 +23,4 @@ const styles = StyleSheet.create({
     flex: 1,
   },
 });
+
