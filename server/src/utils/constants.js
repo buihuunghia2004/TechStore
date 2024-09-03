@@ -10,3 +10,7 @@ export const ROLES = [
     ROLE.SUPPORT,
     ROLE.PRODUCTMANAGER
 ]
+
+export const ERRORS = {
+    DUPLICATE: 11000,
+}

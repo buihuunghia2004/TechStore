@@ -30,7 +30,8 @@ const config = {
     useFileHash: false,
 
     // Don't change this, unless you know what you're doing
-    moduleSystem: 'esm',
+    moduleSystem: 'commonjs',
 };
 
-export default config;
+
+module.exports = config

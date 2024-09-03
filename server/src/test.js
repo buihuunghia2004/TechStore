@@ -1,6 +1,15 @@
-const a = '+_id'
+const a = {
+  b: 1,
+  c: 2,
+  d: 3
+}
 
-const b = a.slice(1)[0]
-const c = a.slice(1)[1]
+const b = {
+}
+
+const ma = Object.keys(a);
+ma.map((item) => {
+  b[item] = a[item];
+})
+
 console.log(b);
-console.log(c);
