@@ -7,7 +7,6 @@ export const CheckBoxStyle = StyleSheet.create({
         flexDirection:'row',
         alignItems:'center',
         height:24,
-        width:100
     },
     text:{
         ...textStyles.body_lg,

@@ -1,12 +1,21 @@
 import { useEffect, useRef } from 'react';  
 import { Animated } from 'react-native';  
 
-const useDropdown = (isExpanded: boolean) => {  
+const useDropdown = (isExpanded: boolean, heightItem: number, itemCount: number) => {   
   const animationValue = useRef(new Animated.Value(0)).current;  
+  const heightInterpolate = useRef(new Animated.Value(0)).current;  
 
-  const heightInterpolate = animationValue.interpolate({  
-    inputRange: [0, 1],  
-    outputRange: [0, 40],
+  useEffect(() => {  
+    Animated.timing(heightInterpolate, {  
+      toValue: isExpanded ? itemCount * heightItem : 0,   
+      duration: 300,  
+      useNativeDriver: false,  
+    }).start();  
+  }, [isExpanded, itemCount]);  
+
+  const interpolatedHeight = heightInterpolate.interpolate({  
+    inputRange: [0, itemCount * heightItem],  
+    outputRange: [0, itemCount * heightItem],  
   });  
 
   const rotateInterpolate = animationValue.interpolate({  
@@ -27,9 +36,9 @@ const useDropdown = (isExpanded: boolean) => {
   }, [isExpanded]);  
 
   return {  
-    heightInterpolate,  
-    animatedStyle,  
+    heightInterpolate: interpolatedHeight,   
+    animatedStyle,   
   };  
 };  
 
-export default useDropdown;
+export default useDropdown;  

@@ -17,8 +17,14 @@ interface TabProps {
   onItemPress?: (key: string) => void;
   positionStyle?: StyleProp<ViewStyle>;
 }
-const Tab: React.FC<TabProps> = ({type, data}) => {
-  const [currentItem, setCurrentItem] = useState<any | null>(null);
+const Tab: React.FC<TabProps> = ({type, data,onItemPress}) => {
+  const [currentItem, setCurrentItem] = useState<string | null>(null);
+  const handleOnPress=(item:string)=>{
+    setCurrentItem(item)
+    if(onItemPress){
+      onItemPress(item)
+    }
+  }
   useEffect(() => {
     setCurrentItem(data[0]);
   }, [type]);
@@ -35,7 +41,7 @@ const Tab: React.FC<TabProps> = ({type, data}) => {
         <TouchableOpacity
           key={index}
           style={TabStyle.itemContainer}
-          onPress={() => setCurrentItem(item)}>
+          onPress={() => handleOnPress(item)}>
           <Text
             style={[
               type == 'ModalTitle'

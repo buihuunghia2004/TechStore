@@ -5,7 +5,7 @@ import {
   TouchableOpacity,
   ViewStyle,
 } from 'react-native';
-import React from 'react';
+import React, { useState } from 'react';
 import {iconStyles, textStyles} from '~/styles/globalStyles';
 import {CheckBoxStyle} from '~/styles/components/common/CheckBoxStyle';
 import {assets} from '~/styles/app/assets';
@@ -28,9 +28,10 @@ const CheckBox: React.FC<CheckBoxProps> = ({
   checked = false,
   positionStyle,
 }) => {
+  const [isChecked,setIsChecked] = useState<boolean>(checked);
   const handlePress = () => {
     if (!disabled) {
-      onPress?.();
+      setIsChecked(!isChecked)
       onChange?.(!checked);
     }
   };
@@ -41,7 +42,7 @@ const CheckBox: React.FC<CheckBoxProps> = ({
       onPress={handlePress}
       disabled={disabled}>
       <Image
-        source={checked ? assets.icon.checkBook : assets.icon.unCheckBook}
+        source={isChecked ? assets.icon.checkBook : assets.icon.unCheckBook}
         style={iconStyles.icon24}
       />
       {title && <Text style={CheckBoxStyle.text}>{title}</Text>}

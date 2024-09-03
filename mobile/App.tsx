@@ -1,22 +1,23 @@
-import { StyleSheet, View } from 'react-native'
-import React from 'react'
-import DropPrice from '~/components/common/DropPrice'
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import AppHeader from '~/components/common/AppHeader';
 
 const App = () => {
-  const handlePriceChange = (minPrice: number, maxPrice: number) => {
-    console.log(`Min Price: ${minPrice}, Max Price: ${maxPrice}`);
-  };
   return (
     <View style={styles.container}>
-      <DropPrice title='Price' max={100} min={0} onPriceChange={handlePriceChange} />
+      <AppHeader/>
     </View>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-  }
-})
+    paddingHorizontal: 24,
+  },
+  scrollView: {
+    flex: 1,
+  },
+});

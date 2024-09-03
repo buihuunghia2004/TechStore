@@ -1,4 +1,4 @@
-import { Image, ImageProps, StyleProp, Text, TextInput, TouchableOpacity, View } from 'react-native'
+import { Image, ImageProps, StyleProp, Text, TextInput, TouchableOpacity, View, ViewStyle } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Animated, { useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { useSharedValue } from 'react-native-reanimated';
@@ -7,17 +7,19 @@ import { iconStyles } from '~/styles/globalStyles'
 import { assets } from '~/styles/app/assets';
 
 interface Props {
-  value: string,
+  value?: string,
   placeholder?: string,
   leftIcon?: ImageProps,
+  rightIcon?:ImageProps,
   clearIcon?: boolean,
   isPassword?: boolean,
   isError?: boolean,
   textError?: string,
   disable?: boolean,
-  onFocus?: () => void,
-  onBlur?: () => void,
-  onChangeText: (text: string) => void,
+  onFocus?: (e: any) => void;  
+  onBlur?: (e: any) => void;   
+  onChangeText: (text: string) => void;
+  positionStyle?:StyleProp<ViewStyle>
 }
 interface State {
   state: string,
@@ -57,7 +59,7 @@ const AppInput: React.FC<Props> = (props) => {
   }, [state])
 
   return (
-    <View style={AppInputStyles.container}>
+    <View style={[props.positionStyle,AppInputStyles.container]}>
       <View style={[
         AppInputStyles.containerInput,
         state.style,
@@ -70,8 +72,8 @@ const AppInput: React.FC<Props> = (props) => {
           style={AppInputStyles.input}
           editable={!disable}
           secureTextEntry={props.isPassword && !isShowPassword}
-          onFocus={() => { setState(FOCUSED), props.onFocus }}
-          onBlur={() => { setState(INACTIVE), props.onBlur }}
+          onFocus={() => { setState(FOCUSED) }}
+          onBlur={() => { setState(INACTIVE) }}
         />
         <TouchableOpacity onPress={props.isPassword ? () => setIsShowPassword(!isShowPassword) : () => props.onChangeText('')}>
           {props.isPassword ?
@@ -81,7 +83,7 @@ const AppInput: React.FC<Props> = (props) => {
         </TouchableOpacity>
       </View>
       {isError && props.placeholder && !disable && <Text style={[AppInputStyles.textError]}>{textError}</Text>}
-      <Animated.Text style={[
+       <Animated.Text style={[
         AppInputStyles.label,
         animatedStyle,
         AppInputStyles.labelBackground,

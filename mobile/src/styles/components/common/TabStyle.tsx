@@ -9,7 +9,7 @@ export const TabStyle = StyleSheet.create({
     maxHeight: 40,
   },  
   containerRegister: {  
-    maxHeight: 40,
+    height: 40,
     ...containerStyles.containerRow,
   },  
   containerNavbar: {  

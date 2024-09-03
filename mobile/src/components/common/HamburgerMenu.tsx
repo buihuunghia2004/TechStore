@@ -1,4 +1,4 @@
-import React, {useRef, useState} from 'react';
+import React, {useState} from 'react';
 import {
   Animated,
   Image,
@@ -9,10 +9,12 @@ import {
   View,
   ViewStyle,
 } from 'react-native';
+import useDropdown from '~/hooks/animation/useDropdown';
 import {assets} from '~/styles/app/assets';
+import {colors} from '~/styles/colors';
 import {HamburgerMenuStyle} from '~/styles/components/common/HamburgerMenuStyle';
 import {iconStyles, textStyles} from '~/styles/globalStyles';
-import useAnimation from '~/hooks/animation/UseDropdown';
+
 interface Content {
   id: string;
   name: string;
@@ -22,33 +24,41 @@ interface HamburgerProps {
   title: string;
   data: Content[];
   type?: 'normal' | 'footer';
-  onItemPress?: () => void;
+  onItemPress?: (item: Content) => void;
   onPress?: () => void;
-  positionStyle?: StyleProp<ViewStyle>
+  positionStyle?: StyleProp<ViewStyle>;
 }
+
 const HamburgerMenu: React.FC<HamburgerProps> = ({
   title,
   data,
   type,
   onPress,
   onItemPress,
-  positionStyle
+  positionStyle,
 }) => {
   const [isExpanded, setIsExpanded] = useState(false);
-  const {heightInterpolate, animatedStyle} = useAnimation(isExpanded);
+  const {heightInterpolate, animatedStyle} = useDropdown(isExpanded,data.length,40);
+
   const toggleExpanded = () => {
     setIsExpanded(prev => !prev);
     if (onPress) onPress();
   };
   return (
-    <View style={HamburgerMenuStyle.container}>
+    <View style={[positionStyle,{ overflow: 'hidden' }]}>
       <TouchableOpacity
         onPress={toggleExpanded}
         activeOpacity={1}
-        style={[HamburgerMenuStyle.header,positionStyle]}>
+        style={[HamburgerMenuStyle.header, positionStyle]}>
         <Text
           style={
-            isExpanded ? HamburgerMenuStyle.text : HamburgerMenuStyle.textBlue
+            type == 'normal'
+              ? isExpanded
+                ? HamburgerMenuStyle.textBlue
+                : HamburgerMenuStyle.textNormal
+              : isExpanded
+              ? HamburgerMenuStyle.textBlue
+              : HamburgerMenuStyle.textFooter
           }>
           {title}
         </Text>
@@ -56,7 +66,7 @@ const HamburgerMenu: React.FC<HamburgerProps> = ({
           <Animated.Image
             style={[HamburgerMenuStyle.icon, animatedStyle]}
             source={
-              type == 'normal'
+              type === 'normal'
                 ? isExpanded
                   ? assets.icon.arrowDownBlue
                   : assets.icon.arrowDown
@@ -67,18 +77,30 @@ const HamburgerMenu: React.FC<HamburgerProps> = ({
           />
         )}
       </TouchableOpacity>
-      <Animated.View style={{height: heightInterpolate}}>
+      <Animated.View
+        style={{
+          height: heightInterpolate,
+          overflow:'hidden'
+        }}>
         {isExpanded && (
           <View>
-            {data?.map(item => (
+            {data.map(item => (
               <TouchableOpacity
                 key={item.id}
                 style={HamburgerMenuStyle.itemContainer}
-                onPress={onItemPress}>
-                {type == 'normal' && (
+                onPress={() => onItemPress && onItemPress(item)}>
+                {type === 'normal' && (
                   <Image source={item.icon} style={iconStyles.icon20} />
                 )}
-                <Text style={textStyles.body_md}>{item.name}</Text>
+                <Text
+                  style={[
+                    textStyles.body_md,
+                    type == 'footer'
+                      ? {color: 'white'}
+                      : {color: colors.gray444444},
+                  ]}>
+                  {item.name}
+                </Text>
               </TouchableOpacity>
             ))}
           </View>
@@ -87,4 +109,5 @@ const HamburgerMenu: React.FC<HamburgerProps> = ({
     </View>
   );
 };
+
 export default HamburgerMenu;
