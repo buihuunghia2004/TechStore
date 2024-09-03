@@ -30,6 +30,7 @@ const getAll = async (req, res, next) => {
 const create = async (req, res, next) => {  
   try {
     console.log(req.file);
+    req.body.imagePath = req.file.path
     const result = await categoryService.create(req.body,req.account.username)
     res.status(200).json({
       status:true,

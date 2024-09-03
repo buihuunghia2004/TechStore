@@ -22,6 +22,11 @@ const categorySchema = new Schema(
       type: String,
       required: true,
     },
+    publicId:{
+      type: String,
+      required: true,
+      default:''
+    },
     createdBy: {
       type: String,
       required: true,

@@ -1,6 +1,8 @@
 import express from 'express'
 import { categoryController } from './category.controller'
-import upload from '@/middlewares/uploadMiddleware'
+import upload from '@/middlewares/upload'
+import authorizeRoles from '@/middlewares/authMiddleware'
+import { ROLE } from '@/utils/Constants'
 const Router = express.Router()
 
 Router.route('/')
@@ -8,6 +10,7 @@ Router.route('/')
     categoryController.getAll
   )
   .post(
+    authorizeRoles([ROLE.ADMIN]),
     upload.single('image'),
     categoryController.create
   )

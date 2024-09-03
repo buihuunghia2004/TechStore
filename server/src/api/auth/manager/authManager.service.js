@@ -16,8 +16,7 @@ const login = async (login, password) => {
     throw new ApiError(
       StatusCodes.UNAUTHORIZED,
       "Unauthorized",
-      1,
-      'Manager not found'
+      ['1001-Manager not found']
     );
   }
 
@@ -26,8 +25,7 @@ const login = async (login, password) => {
     throw new ApiError(
       StatusCodes.UNAUTHORIZED,
       "Unauthorized",
-      2,
-      'Password not match'
+      ['2001-Password not match']
     );
   }
 
