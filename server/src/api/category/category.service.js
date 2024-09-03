@@ -4,7 +4,8 @@ import { CategoryModel } from "./category.model";
 import { ERRORS } from "@/utils/Constants";
 import slugify from "@/utils/slugify";
 import { categoryValidate } from "./category.validate";
-
+import cloudinary from "@/config/cloundinary";
+import fs from "fs";
 
 const getAll = async ({
   isPagination = false,
@@ -36,7 +37,7 @@ const getAll = async ({
   return [result, total];
 };
 
-// const getBySlug = async (code,only) => {  
+// const getBySlug = async (code,only) => {
 //   const category = await CategoryModel.findOne({ code: code },only);
 //   if (!category) {
 //     throw new ApiError(StatusCodes.BAD_REQUEST, "Brand not found", [
@@ -46,26 +47,40 @@ const getAll = async ({
 //   return category
 // }
 
-const create = async (category, creater) => {  
-  const newCategory = new CategoryModel({
-    ...category,
-    slug: slugify(category.name),
-    createdBy: creater,
-    updatedBy: creater,
-  });
+const create = async (category, creater) => {
   try {
+    const uploadedFile = await cloudinary.uploader.upload(category.imagePath, {
+      folder: "categories",
+      public_id: slugify(category.name),
+      overwrite: true,
+    });
+    fs.unlinkSync(category.imagePath);
+
+    const newCategory = new CategoryModel({
+      name: category.name,
+      urlImage: uploadedFile.secure_url,
+      slug: slugify(category.name),
+      createdBy: creater,
+      updatedBy: creater,
+    });
+
     await newCategory.save();
-  } catch (error) {    
+    
+    return newCategory;
+  } catch (error) {
+    console.log(error);
+    
     if (error.code === ERRORS.DUPLICATE) {
       throw new ApiError(StatusCodes.BAD_REQUEST, "Category already exists", [
-        categoryValidate.errorMap.HANDLE[Object.keys(error.keyValue)].exists
+        categoryValidate.errorMap.HANDLE[Object.keys(error.keyValue)].exists,
       ]);
     }
-    throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, "Something went wrong", [
-      categoryValidate.errorMap.HANDLE.internalServerError,
-    ]);
+    throw new ApiError(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      "Something went wrong",
+      [categoryValidate.errorMap.HANDLE.internalServerError]
+    );
   }
-  return newBrand;
 };
 
 // const updateById = async (id, brand, updater) => {
@@ -119,5 +134,5 @@ const create = async (category, creater) => {
 
 export const categoryService = {
   getAll,
-  create
+  create,
 };
