@@ -1,6 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "./colors";
-import { borderRadius, cardElevation, fontSize, screenPadding, spacing, TabHeight } from "./dimensions";
+import { borderRadius, screenPadding, spacing, TabHeight } from "./dimensions";
 
 export const textStyles = StyleSheet.create({
   h1: {
@@ -51,6 +51,12 @@ export const textStyles = StyleSheet.create({
     fontSize: 16,
     fontStyle:'normal',
     fontWeight:'300',
+  },
+  button_sm:{
+    fontFamily: 'Inter',
+    fontSize: 12,
+    fontStyle:'normal',
+    fontWeight:'400',
   },
   button_lg: {
     fontFamily: 'Inter',
@@ -111,6 +117,10 @@ export const switchStyle = StyleSheet.create({
 })
 
 export const iconStyles = StyleSheet.create({
+  icon8:{
+    width: 8,
+    height: 8,
+  },
   icon14: { 
     width: 14,
     height: 14,
@@ -136,17 +146,51 @@ export const iconStyles = StyleSheet.create({
     height: 40,
   },
 })
+export const imageStyle = StyleSheet.create({
+  image40:{
+    width: 40, 
+    height: 40,
+  },
+  image66:{
+    width: 66, 
+    height: 66,
+  },
+  image86_72:{
+    width: 86, 
+    height: 72,
+  },
+  image82_59:{
+    width: 82, 
+    height: 59,
+  },
+  image62_48:{
+    width: 62, 
+    height: 48,
+  },
+  image132_104:{
+    width: 132, 
+    height: 104,
+  },
+  image120_134:{
+    width: 120, 
+    height: 134,
+  }
+})
 
 export const containerStyles = StyleSheet.create({
   container: {
     flex: 1,
   },
   containerRow: {
-    flex:1,
+    width:'100%',
     flexDirection: 'row',
   },
+  containerBetween:{
+    width:'100%',
+    flexDirection: 'row',
+    justifyContent:'space-between'
+  },
   containerCenter: {
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
   },
@@ -158,9 +202,8 @@ export const containerStyles = StyleSheet.create({
   card: {
     backgroundColor: 'white',
     borderRadius: borderRadius.medium,
-    padding: spacing.medium,
+    padding: spacing.small,
     marginVertical: spacing.small,
-    elevation: cardElevation.medium,
     shadowColor: 'black',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.2,
@@ -170,8 +213,8 @@ export const containerStyles = StyleSheet.create({
 
 export const globalStyles = StyleSheet.create({
   line: {
-    flex: 1,
-    maxHeight: 1,
-    backgroundColor: colors.gray2D2D2D,
+    flex:1,
+    height: 1,
+    backgroundColor: colors.grayB4B4B4,
   },
 });

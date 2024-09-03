@@ -4,10 +4,8 @@ import { containerStyles, textStyles } from '~/styles/globalStyles'
 
 export const AppInputStyles = StyleSheet.create({
   container: {
-    flex: 1,
     height: 65,
     maxHeight: 65,
-    backgroundColor: colors.background
   },
   containerInput: {
     ...containerStyles.containerRow,

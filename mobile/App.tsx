@@ -1,20 +1,26 @@
-import { StyleSheet, View } from 'react-native'
-import React from 'react'
+
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
+import React from 'react';
+import AppHeader from '~/components/common/AppHeader';
 
 const App = () => {
-  const handlePriceChange = (minPrice: number, maxPrice: number) => {
-    console.log(`Min Price: ${minPrice}, Max Price: ${maxPrice}`);
-  };
   return (
     <View style={styles.container}>
+      <AppHeader/>
     </View>
-  )
-}
+  );
+};
 
-export default App
+export default App;
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1
-  }
-})
+
+    flex: 1,
+    paddingHorizontal: 24,
+  },
+  scrollView: {
+    flex: 1,
+  },
+});
+

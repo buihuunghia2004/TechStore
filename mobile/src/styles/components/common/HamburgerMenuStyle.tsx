@@ -4,28 +4,29 @@ import { spacing } from "~/styles/dimensions";
 import { iconStyles, textStyles } from "~/styles/globalStyles";
 
 export const HamburgerMenuStyle = StyleSheet.create({
-    container:{
-        flex:1,
-    },
     header:{
         height:40,
         justifyContent:'space-between',
         alignItems:'center',
         flexDirection:'row',
     },
-    text:{
+    textNormal:{
         ...textStyles.body_lg,
-        color:colors.primary
+        color:colors.gray444444
+    },
+    textFooter:{
+        ...textStyles.body_lg,
+        color:'white'
     },
     textBlue:{
         ...textStyles.body_lg,
-        color:colors.gray444444
+        color:colors.primary
     },
     itemContainer:{
         flexDirection: 'row',
         alignItems: 'center',
         paddingVertical: spacing.small,
-        paddingHorizontal:spacing.smallMedium
+        paddingHorizontal:spacing.smallMedium,
     },
     button:{
         flex:1,

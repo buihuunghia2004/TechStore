@@ -1,6 +1,5 @@
 import {
   Dimensions,
-  StyleSheet,
   Text,
   TextInput,
   View,
@@ -16,7 +15,7 @@ import {colors} from '~/styles/colors';
 import {assets} from '~/styles/app/assets';
 import {HamburgerMenuStyle} from '~/styles/components/common/HamburgerMenuStyle';
 import {DropCheckBoxStyle} from '~/styles/components/common/DropCheckBoxStyle';
-import {textStyles} from '~/styles/globalStyles';
+import { DropPriceStyle } from '~/styles/components/common/DropPriceStyle';
 
 interface DropPriceBoxProps {
   title: string;
@@ -77,10 +76,10 @@ const DropPrice: React.FC<DropPriceBoxProps> = ({
     }
   }, [minPrice, maxPrice]);
   return (
-    <View style={styles.container}>
+    <View>
       <TouchableOpacity
         onPress={() => setIsExpanded(!isExpanded)}
-        style={styles.header}>
+        style={DropPriceStyle.header}>
         <Text
           style={
             isExpanded ? HamburgerMenuStyle.text : HamburgerMenuStyle.textBlue
@@ -95,16 +94,16 @@ const DropPrice: React.FC<DropPriceBoxProps> = ({
       <Animated.View>
         {isExpanded && (
           <View>
-            <View style={styles.inputContainer}>
+            <View style={DropPriceStyle.inputContainer}>
               <TextInput
-                style={styles.input}
+                style={DropPriceStyle.input}
                 placeholder="min."
                 keyboardType="numeric"
                 value={minPrice.toString()}
                 onChangeText={value => handleInputChange(0, value)}
               />
               <TextInput
-                style={styles.input}
+                style={DropPriceStyle.input}
                 placeholder="max."
                 keyboardType="numeric"
                 value={maxPrice.toString()}
@@ -112,7 +111,7 @@ const DropPrice: React.FC<DropPriceBoxProps> = ({
               />
             </View>
             <TouchableWithoutFeedback onPress={handleTrackPress}>
-              <View style={styles.sliderContainer}>
+              <View style={DropPriceStyle.sliderContainer}>
                 <MultiSlider
                   values={[
                     minPrice == '' ? min : parseInt(minPrice),
@@ -134,8 +133,8 @@ const DropPrice: React.FC<DropPriceBoxProps> = ({
                     slipDisplacement: 40,
                   }}
                   customMarker={() => (
-                    <View style={styles.marker}>
-                      <View style={styles.markerInner} />
+                    <View style={DropPriceStyle.marker}>
+                      <View style={DropPriceStyle.markerInner} />
                     </View>
                   )}
                 />
@@ -148,57 +147,4 @@ const DropPrice: React.FC<DropPriceBoxProps> = ({
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  header: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    width: '100%',
-    maxHeight: 56,
-  },
-  text: {
-    ...textStyles.body_lg,
-    color: 'black',
-  },
-  inputContainer: {
-    width: '100%',
-    gap: 24,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    marginBottom: 16,
-  },
-  input: {
-    width: '25%',
-    borderWidth: 1,
-    borderColor: colors.gray717171,
-    borderRadius: 8,
-    padding: 8,
-    textAlign: 'center',
-  },
-  sliderContainer: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  marker: {
-    height: 20,
-    width: 20,
-    borderRadius: 10,
-    marginTop: 5,
-    backgroundColor: colors.primary,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  markerInner: {
-    height: 10,
-    width: 10,
-    borderRadius: 5,
-    backgroundColor: 'white',
-  },
-});
-
 export default DropPrice;
