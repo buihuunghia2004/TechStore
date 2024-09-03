@@ -1,26 +1,20 @@
 export const PageRequest = ({
   isPagination = true,
-  page = 1,
-  size = 20,
-  sort = '_id-asc'
+  page = 0,
+  limit = 20,
+  sorts = "createdBy-asc",
 }) => {
-  let [sortBy, sortOrder] = sort.split('-')
-
-  if (!isPagination) {
-    return {
-      isPagination,
-      sort: {
-        [sortBy]: sortOrder === 'asc' ? 1 : -1
-      }
-    }
-  }
-
+  const sortListString = sorts.split(",");
+  const sortsQuery = {}
+  sortListString.map((item) => {
+    const sortBy = item.split("-")[0];
+    const sortOrder = item.split("-")[1] === "desc" ? -1 : 1;
+    sortsQuery[sortBy] = sortOrder
+  })
   return {
-    isPagination,
-    skip: (page - 1) * size,
-    limit: Number.parseInt(size),
-    sort: {
-      [sortBy]: sortOrder === 'asc' ? 1 : -1
-    }
-  }
-}
+    isPagination : isPagination === "false" ? false : true,
+    limit: (Number.parseInt(limit) || 20) < 0 ? 20 : Number.parseInt(limit),
+    skip: ((Number.parseInt(limit) || 20) < 0 ? 20 : Number.parseInt(limit)) * ((Number.parseInt(page) || 0) < 0 ? 0 : Number.parseInt(page)),
+    sorts:sortsQuery
+  };
+};

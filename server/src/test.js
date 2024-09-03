@@ -1,28 +1,15 @@
-const populate = ['roles']
+const a = {
+  b: 1,
+  c: 2,
+  d: 3
+}
 
-const lookupConfig = {
-  roles: [
-    {
-      $lookup: {
-        from: "managerroles",
-        localField: "_id",
-        foreignField: "managerId",
-        as: "managerRoles",
-      },
-    },
-    {
-      $lookup: {
-        from: "roles",
-        localField: "managerRoles.roleId",
-        foreignField: "_id",
-        as: "roles",
-      },
-    },
-  ],
-};
+const b = {
+}
 
-populate.map((item) => {
-  console.log(...lookupConfig[item]);
-});
+const ma = Object.keys(a);
+ma.map((item) => {
+  b[item] = a[item];
+})
 
-// console.log(...lookupConfig["role"]);
+console.log(b);
