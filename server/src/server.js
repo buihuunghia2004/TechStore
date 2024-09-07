@@ -15,11 +15,11 @@ connectdb();
 
 //cors
 app.use(cors());
-app.use(bodyParser.json());
 app.use(morgan("dev"));
 
 // Cho phép lý dữ liệu từ form method POST
 app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 //init server routes
 initAppRoutes(app);

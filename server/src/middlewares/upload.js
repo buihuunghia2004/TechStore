@@ -1,6 +1,5 @@
 import multer from 'multer';
 import path from 'path';
-import { fileURLToPath } from 'url';
 
 // Thiết lập bộ nhớ Multer để lưu file vào bộ nhớ tạm thời trước khi upload lên Cloudinary
 const storage = multer.diskStorage({

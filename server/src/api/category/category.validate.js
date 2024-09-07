@@ -15,6 +15,11 @@ const errorMap = {
     },
     _destroy:{
       "any.required": '150-_destroy is required',
+    },
+    brand:{
+      name:{
+        "any.required": '160-Name is required',
+      }
     }
   },
   HANDLE:{
@@ -24,24 +29,27 @@ const errorMap = {
     code:{
       "exists": '220-Code already exist',
     },
-    brandNotFound: '2404-Manager not found',
+    categoryNotFound: '2404-Category not found',
     internalServerError:'230-Internal server error'
   }
 }
 
 const createCategory = Joi.object({
   name:vc.STRING.required().messages(errorMap.VALIDATE.name),
-  urlImage:vc.URL.required().messages(errorMap.VALIDATE.urlImage)
 })
 
 const updateCategory = Joi.object({
   name:vc.STRING.required().messages(errorMap.VALIDATE.username),
-  urlImage:vc.STRING.required().messages(errorMap.VALIDATE.urlImage),
   _destroy:vc.BOOLEAN.required().messages(errorMap.VALIDATE._destroy),
+})
+
+const addBrandToCategory = Joi.object({
+  name:vc.STRING.required().messages(errorMap.VALIDATE.brand.name),
 })
 
 export const categoryValidate = {
   errorMap,
   createCategory,
-  updateCategory
+  updateCategory,
+  addBrandToCategory
 }

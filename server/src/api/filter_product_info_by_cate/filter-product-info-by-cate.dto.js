@@ -1,6 +1,4 @@
 const NAME = 'name';
-const URL_IMAGE = 'urlImage';
-const SLUG = 'slug';
 const CODE = 'code';
 const _DESTROY = '_destroy';
 const CREATED_BY = 'createdBy';
@@ -8,12 +6,11 @@ const UPDATED_BY = 'updatedBy';
 const CREATED_AT = 'createdAt';
 const UPDATED_AT = 'updatedAt';
 
-const categoryDTO = {
+const filterProductInfoByCateDTO = {
   query: {
     only: [
       NAME,
-      URL_IMAGE,
-      SLUG,
+      CODE,
       CREATED_AT,
       UPDATED_AT,
       CREATED_BY,
@@ -22,16 +19,14 @@ const categoryDTO = {
     ],
     update: [
       NAME,
-      URL_IMAGE,
+      CODE,
     ],
     create: [
-      NAME
+      NAME,
+      CODE
     ],
-    addBrand:[
-      NAME
-    ]
   },
   response: {},
 };
 
-export default categoryDTO;
+export default filterProductInfoByCateDTO;

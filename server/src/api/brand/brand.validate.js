@@ -31,8 +31,6 @@ const errorMap = {
 
 const createBrand = Joi.object({
   name:vc.STRING.required().messages(errorMap.VALIDATE.name),
-  urlLogo:vc.URL.required().messages(errorMap.VALIDATE.urlLogo),
-  code:vc.STRING.required().messages(errorMap.VALIDATE.code),
 })
 
 const updateBrand = Joi.object({
