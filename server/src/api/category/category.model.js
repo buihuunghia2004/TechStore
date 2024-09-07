@@ -13,19 +13,29 @@ const categorySchema = new Schema(
       required: true,
       unique: true,
     },
+    imgUrl: { 
+      type: String,
+      required: true,
+    },
+    imgPId:{
+      type: String,
+      required: true,
+      default:''
+    },
     brands: {
       type:[Schema.Types.ObjectId],
       ref: 'Brand',
       default: [],
     },
-    urlImage: { 
-      type: String,
-      required: true,
+    filterProductInfos:{
+      type: [Schema.Types.ObjectId],
+      ref: 'FilterInfoByCate',
+      default: [],
     },
-    publicId:{
-      type: String,
-      required: true,
-      default:''
+    productInfos:{
+      type: [Schema.Types.ObjectId],
+      ref: 'ProductInfoByCate',
+      default: [],
     },
     createdBy: {
       type: String,

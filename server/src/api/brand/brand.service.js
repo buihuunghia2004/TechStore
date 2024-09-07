@@ -3,6 +3,8 @@ import { StatusCodes } from "http-status-codes";
 import { brandValidate } from "./brand.validate";
 import { BrandModel } from "./brand.model";
 import { ERRORS } from "@/utils/Constants";
+import { CategoryModel } from "../category/category.model";
+import slugify from "@/utils/slugify";
 
 const getAll = async ({
   isPagination = false,
@@ -46,26 +48,47 @@ const getByCode = async (code,only) => {
   return brand
 }
 
-const create = async (brand, creater) => {
-  const newBrand = new BrandModel({
-    ...brand,
-    createdBy: creater,
-    updatedBy: creater,
-  });
-  try {
-    await newBrand.save();
-  } catch (error) {    
-    if (error.code === ERRORS.DUPLICATE) {
-      throw new ApiError(StatusCodes.BAD_REQUEST, "Brand already exists", [
-        brandValidate.errorMap.HANDLE[Object.keys(error.keyValue)].exists
-      ]);
-    }
-    throw new ApiError(StatusCodes.INTERNAL_SERVER_ERROR, "Something went wrong", [
-      brandValidate.errorMap.HANDLE.internalServerError,
+const create = async ( categoryId, brand, creator) => {  
+  const brandFind = await BrandModel.findOne({$and : [{name: brand.name}, {categoryId: categoryId}]});
+  if (brandFind) {//lỗi đã tồn tại
+    throw new ApiError(StatusCodes.BAD_REQUEST, "Category not found", [
+      categoryValidate.errorMap.HANDLE.categoryNotFound,
     ]);
   }
-  return newBrand;
-};
+  
+  try {
+    const uploadedFile = await cloudinary.uploader.upload(brand.imagePath, {
+      folder: "brands",
+      public_id: slugify(brand.name),
+      overwrite: true,
+    });
+    fs.unlinkSync(brand.imagePath);
+
+    const newBrand = new BrandModel({
+      name: brand.name,
+      imgUrl: uploadedFile.secure_url,
+      imgPId: uploadedFile.public_id,
+      slug: slugify(brand.name),
+      categoryId: categoryId,
+      createdBy: creator,
+      updatedBy: creator,
+    });
+
+    await newBrand.save();
+
+    category.brands.push(newBrand._id);
+    await category.save();
+    return newBrand;
+  }catch (error) {
+    console.log(error);
+    
+    throw new ApiError(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      "Something went wrong",
+      [brandValidate.errorMap.HANDLE.internalServerError]
+    );
+  }
+}
 
 const updateById = async (id, brand, updater) => {
   const brandFind = await BrandModel.findById(id);
