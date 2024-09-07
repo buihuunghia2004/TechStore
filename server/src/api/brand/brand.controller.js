@@ -30,7 +30,8 @@ const getByCode = async (req, res, next) => {
 
 const createBrand = async (req, res, next) => {
   try {
-    const result = await brandService.create(req.body,req.account.username)
+    console.log(req.body);
+    const result = await brandService.create(req.params.slug,req.body,req.account.username)
     res.status(200).json({
       status:true,
       data:result,
@@ -50,20 +51,21 @@ const createBrand = async (req, res, next) => {
 //   }
 // }
 
-// const deleteManager = async (req, res, next) => {
-//   try {
-//     const result = await managerService.deleteById(req.params.id)
-//     res.status(200).json({
-//       status: result,
-//       message: "Success",
-//     })
-//   } catch (error) {
-//     next(error)
-//   }
-// }
+const deleteById = async (req, res, next) => {
+  try {
+    const result = await brandService.deleteById(req.params.id)
+    res.status(200).json({
+      status: result,
+      message: "Success",
+    })
+  } catch (error) {
+    next(error)
+  }
+}
 
 export const brandController = {
   createBrand,
   getBrands,
-  getByCode
+  getByCode,
+  deleteById
 }

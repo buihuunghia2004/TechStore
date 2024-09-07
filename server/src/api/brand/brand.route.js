@@ -16,14 +16,9 @@ Router.route('/')
     validationMiddleware(brandValidate.createBrand,brandDTO.query.create),
     brandController.createBrand
   )
-
-Router.route('/:code')
-  .get(
-    brandController.getByCode
-  )
-  .patch(
-  )
+Router.route('/:id')
   .delete(
+    authorizeRoles([ROLE.ADMIN]),
+    brandController.deleteById
   )
-
 export const brandRoute = Router

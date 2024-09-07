@@ -1,21 +1,19 @@
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
-const managerSchema = new Schema(
+const productSchema = new Schema(
   {
-    name:{
+    name: {
       type: String,
       required: true,
+      unique: true,
     },
-    categoryId:{
-      type: Schema.Types.ObjectId,
-      required: true,
-    },
-    imgUrl: {
+    username: {
       type: String,
       required: true,
+      unique: true,
     },
-    imgPId: {
+    password: {
       type: String,
       required: true,
     },
@@ -26,12 +24,8 @@ const managerSchema = new Schema(
     updatedBy: {
       type: String,
       required: true,
-    },
-    _destroy: {
-      type: Boolean,
-      default: false,
-    },
+    }
   },
   { timestamps: true }
 );
-export const BrandModel = mongoose.model("Brand", managerSchema);
+export const ProductModel = mongoose.model("Product", productSchema);

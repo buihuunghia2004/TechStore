@@ -58,7 +58,8 @@ const create = async (category, creater) => {
 
     const newCategory = new CategoryModel({
       name: category.name,
-      urlImage: uploadedFile.secure_url,
+      imgUrl: uploadedFile.secure_url,
+      imgPId: uploadedFile.public_id,
       slug: slugify(category.name),
       createdBy: creater,
       updatedBy: creater,
@@ -82,6 +83,49 @@ const create = async (category, creater) => {
     );
   }
 };
+
+const addBrandToCategory = async ( categorySlug, brand, creator) => {  
+  const category = await CategoryModel.findOne({ slug: categorySlug });
+  if (!category) {
+    throw new ApiError(StatusCodes.BAD_REQUEST, "Category not found", [
+      categoryValidate.errorMap.HANDLE.categoryNotFound,
+    ]);
+  }
+
+  try {
+    // const uploadedFile = await cloudinary.uploader.upload(brand.imagePath, {
+    //   folder: "brands",
+    //   public_id: slugify(brand.name),
+    //   overwrite: true,
+    // });
+    // fs.unlinkSync(brand.imagePath);
+
+    const newBrand = new CategoryModel({
+      name: brand.name,
+      code: slugify(brand.name),
+      // imgUrl: uploadedFile.secure_url,
+      // imgPId: uploadedFile.public_id,
+      imgUrl:'link',
+      imgPId:'link',
+      slug: slugify(brand.name),
+      categoryId: category._id,
+      createdBy: creator,
+      updatedBy: creator,
+    });
+
+    await newBrand.save();
+
+    category.brands.push(newBrand);
+    await category.save();
+    return newBrand;
+  }catch (error) {
+    throw new ApiError(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      "Something went wrong",
+      [categoryValidate.errorMap.HANDLE.internalServerError]
+    );
+  }
+}
 
 // const updateById = async (id, brand, updater) => {
 //   const brandFind = await CategoryModel.findById(id);
@@ -112,27 +156,29 @@ const create = async (category, creater) => {
 //   return brandFind;
 // };
 
-// const deleteById = async (id) => {
-//   const brandFind = await CategoryModel.findById(id);
-//   if (!brandFind) {
-//     throw new ApiError(StatusCodes.BAD_REQUEST, "Bad Request", [
-//       brandValidate.errorMap.HANDLE.brandNotFound,
-//     ]);
-//   }
+const deleteById = async (id) => {
+  const brandFind = await CategoryModel.findById(id);
+  if (!brandFind) {
+    throw new ApiError(StatusCodes.BAD_REQUEST, "Bad Request", [
+      brandValidate.errorMap.HANDLE.brandNotFound,
+    ]);
+  }
 
-//   try {
-//     await brandFind.deleteOne();
-//     return true;
-//   } catch (error) {
-//     throw new ApiError(
-//       StatusCodes.INTERNAL_SERVER_ERROR,
-//       "Something went wrong",
-//       [brandValidate.errorMap.HANDLE.internalServerError]
-//     );
-//   }
-// };
+  try {
+    await brandFind.deleteOne();
+    return true;
+  } catch (error) {
+    throw new ApiError(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      "Something went wrong",
+      [brandValidate.errorMap.HANDLE.internalServerError]
+    );
+  }
+};
 
 export const categoryService = {
   getAll,
   create,
+  addBrandToCategory,
+  deleteById
 };

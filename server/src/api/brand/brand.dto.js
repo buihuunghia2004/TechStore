@@ -1,6 +1,7 @@
 const NAME = 'name';
-const URL_LOGO = 'urlLogo';
 const CODE = 'code';
+const IMAGE_URL = 'imgUrl';
+const IMAGE_PID = 'imgPId';
 const _DESTROY = '_destroy';
 const CREATED_BY = 'createdBy';
 const UPDATED_BY = 'updatedBy';
@@ -11,7 +12,9 @@ const brandDTO = {
   query: {
     only: [
       NAME,
-      URL_LOGO,
+      CODE,
+      IMAGE_URL,
+      IMAGE_PID,
       CREATED_AT,
       UPDATED_AT,
       CREATED_BY,
@@ -20,12 +23,9 @@ const brandDTO = {
     ],
     update: [
       NAME,
-      URL_LOGO,
     ],
     create: [
       NAME,
-      URL_LOGO,
-      CODE
     ],
   },
   response: {},
