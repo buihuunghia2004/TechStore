@@ -24,8 +24,12 @@ const errorMap = {
     code:{
       "exists": '220-Code already exist',
     },
-    brandNotFound: '2404-Manager not found',
-    internalServerError:'230-Internal server error'
+    create:{
+      notFoundCate: '4404-Category not found',
+      categoryExists: '1101-Brand already exists'
+    },
+    brandNotFound: '4404-Manager not found',
+    internalServerError:'5500-Internal server error'
   }
 }
 
@@ -42,5 +46,6 @@ const updateBrand = Joi.object({
 export const brandValidate = {
   createBrand,
   updateBrand,
-  errorMap
+  errorMap,
+  handleError:errorMap.HANDLE
 }

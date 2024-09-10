@@ -2,13 +2,14 @@ import { PageRequest } from "@/utils/PageRequest"
 import OffsetPaginate from "@/utils/OffsetPaginate"
 import OnlyRequest from "@/utils/OnlyRequest"
 import { categoryService } from "./category.service"
+import categoryDTO from "./category.dto"
 
 const getAll = async (req, res, next) => {
   try {
     const options = {
       ...PageRequest(req.query),
-      only: OnlyRequest(req.query.only),
-    }        
+      only: OnlyRequest(req.query.only,categoryDTO.query.only),
+    }            
     const result = await categoryService.getAll(options)
     res.status(200).json(OffsetPaginate(result, options))
   } catch (error) {

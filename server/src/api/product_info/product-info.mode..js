@@ -21,4 +21,4 @@ const model = new Schema(
   },
   { timestamps: true }
 );
-export const ProductInfoCateModel = mongoose.model("ProductInfoByCate", model);
+export const ProductInfoModel = mongoose.model("ProductInfo", model);

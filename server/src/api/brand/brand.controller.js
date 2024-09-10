@@ -18,10 +18,10 @@ const getBrands = async (req, res, next) => {
   }
 }
 
-const getByCode = async (req, res, next) => {
+const getBrandsByCateSlug = async (req, res, next) => {
   try {    
     const only = OnlyRequest(req.query.only,brandDTO.query.only)    
-    const result = await brandService.getByCode(req.params.code,only)
+    const result = await brandService.getBrandsByCateSlug(req.params.slug,only)
     res.status(200).json(result)
   } catch (error) {
     next(error)
@@ -30,7 +30,6 @@ const getByCode = async (req, res, next) => {
 
 const createBrand = async (req, res, next) => {
   try {
-    console.log(req.body);
     const result = await brandService.create(req.params.slug,req.body,req.account.username)
     res.status(200).json({
       status:true,
@@ -66,6 +65,6 @@ const deleteById = async (req, res, next) => {
 export const brandController = {
   createBrand,
   getBrands,
-  getByCode,
+  getBrandsByCateSlug,
   deleteById
 }

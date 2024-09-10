@@ -17,7 +17,11 @@ const errorMap = {
     code:{
       "exists": '220-Code already exist',
     },
-    categoryNotFound: '2404-Category not found',
+    create:{
+      notFoundCate: '3404-Category not found',
+      productInfoExists: '1101-Prodct info already exists'
+    },
+    productInfoNotFound: '404-Product info not found',
     internalServerError:'230-Internal server error'
   }
 }
@@ -27,7 +31,8 @@ const create = Joi.object({
   code:vc.STRING.required().messages(errorMap.VALIDATE.name),
 })
 
-export const productInfoByCateValidate = {
+export const productInfoValidate = {
   errorMap,
-  create
+  create,
+  handleErrors:errorMap.HANDLE
 }

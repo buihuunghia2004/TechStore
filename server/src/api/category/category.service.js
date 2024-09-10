@@ -11,10 +11,10 @@ const getAll = async ({
   isPagination = false,
   limit = 0,
   skip = 0,
-  only = { password: 0 },
+  only = {},
   sorts = {},
-} = {}) => {
-  const query = CategoryModel.find({}, only).populate("brands");
+} = {}) => {  
+  const query = CategoryModel.find({}, only)
 
   if (isPagination) {
     if (limit > 0) {
