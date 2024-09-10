@@ -2,14 +2,19 @@ import ApiError from "@/utils/ApiError";
 import { CategoryModel } from "../category/category.model";
 import { ProductInfoModel } from "./product-info.mode.";
 import { StatusCodes } from "http-status-codes";
-import { productInfoErrors, productInfoValidate } from "./product-info.validate";
+import { productInfoErrors } from "./product-info.validate";
 import { ERRORS } from "@/utils/Constants";
 import ResErros from "@/common/ResErrors";
 
 const getInfosByCategory = async (cateSlug) => {
-  return await CategoryModel
-    .findOne({ slug: cateSlug })
+  const category =  await CategoryModel
+    .findOne({ slug: cateSlug },{productInfos:1})
     .populate('productInfos');
+
+  if (!category) {
+    return []
+  }
+  return category.productInfos
 }
 
 const create = async ( cateSlug, data, creator) => {  
@@ -49,15 +54,21 @@ const create = async ( cateSlug, data, creator) => {
   }
 }
 
-const deleteInfo = async (id) => {
+const deleteById = async (id) => {
   try{
     const deleted = await ProductInfoModel.findByIdAndDelete(id)
 
-    if (deleted) {
+    //check deleted
+    if (!deleted) {
       throw new ApiError(StatusCodes.BAD_REQUEST, "Product info not found", [  
-        productInfoValidate.errorMap.HANDLE.productInfoNotFound,
+        productInfoErrors.delete.productInfoNotFound
       ]);
     }
+
+    //delete product info from category
+    const category = await CategoryModel.findById(deleted.categoryId)
+    category.productInfos.pull(deleted._id)
+    await category.save()
   }catch(error){
     console.log(error);
     throw new ApiError(
@@ -71,5 +82,5 @@ const deleteInfo = async (id) => {
 export const productInfoService = {
   create,
   getInfosByCategory,
-  deleteInfo
+  deleteById,
 }

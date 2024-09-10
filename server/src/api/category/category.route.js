@@ -54,6 +54,10 @@ Router.route("/:slug/product-filters")
     productFilterController.getByCategory
   )
 
+Router.route("/:slug/product-filters/:id")
+  .delete(
+    productFilterController.deleteById
+  )
 
 Router.route("/:slug/product-infos")
   .post(
@@ -64,6 +68,13 @@ Router.route("/:slug/product-infos")
     ),
     productInfoController.create
   )
-  .get();
+  .get(
+    productInfoController.getByCategory
+  );
+
+Router.route("/:slug/product-infos/:id")
+  .delete(
+    productInfoController.deleteById
+  )
 
 export const categoryRoute = Router;

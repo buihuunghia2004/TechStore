@@ -21,13 +21,16 @@ export const productInfoErrors = {
     notFoundCate: "3404-Category not found",
     productInfoExists: "1101-Prodct info already exists",
   },
+  delete: {
+    productInfoNotFound: "11404-Product info not found",
+  },
   productInfoNotFound: "404-Product info not found",
   internalServerError: "230-Internal server error",
 };
 
 const create = Joi.object({
   name: vc.STRING.required().messages(validateErrors.name),
-  code: vc.STRING.required().messages(validateErrors.name),
+  code: vc.STRING.required().messages(validateErrors.code),
 });
 
 export const productInfoValidate = {
