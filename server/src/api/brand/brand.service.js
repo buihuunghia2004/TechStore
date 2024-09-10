@@ -10,7 +10,7 @@ const getAll = async ({
   isPagination = false,
   limit = 0,
   skip = 0,
-  only = { password: 0 },
+  only = { password: 0 }, 
   sorts = {},
 } = {}) => {
   const query = BrandModel.find({}, only);
@@ -47,6 +47,7 @@ const getByCode = async (code,only) => {
   }
   return brand
 }
+
 
 const create = async ( categoryId, brand, creator) => {  
   const brandFind = await BrandModel.findOne({$and : [{name: brand.name}, {categoryId: categoryId}]});

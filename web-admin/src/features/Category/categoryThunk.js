@@ -1,4 +1,3 @@
-// src/features/category/categoryThunk.js
 
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import api from '~/api/api';
@@ -18,13 +17,13 @@ export const addCategory = createAsyncThunk(
       try {
         const response = await api.post('api/categories', newCategory, {
           headers: {
-            'Content-Type': 'multipart/form-data' 
+            'Content-Type': 'multipart/form-data'
           }
         });
         console.log(response.data);
         return response.data;
       } catch (error) {
-        throw Error(error.response?.data?.message || 'Failed to add category');
+        throw new Error(error.response?.data?.message || 'Failed to add category');
       }
     }
   );
