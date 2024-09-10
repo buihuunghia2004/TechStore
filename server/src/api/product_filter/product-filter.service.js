@@ -1,7 +1,7 @@
 import ApiError from "@/utils/ApiError";
 import { CategoryModel } from "../category/category.model";
 import { StatusCodes } from "http-status-codes";
-import { FilterProductInfoCateModel } from "./filter-product-info-by-cate.model";
+import { FilterProductInfoCateModel } from "./product-filter.model";
 
 const getByCategory = async (categorySlug) => {  
   const category = await CategoryModel

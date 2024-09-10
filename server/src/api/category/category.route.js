@@ -12,9 +12,9 @@ import categoryDTO from "./category.dto";
 import { productInfoValidate } from "../product_info/product-info.validate";
 import productInfoByCateDTO from "../product_info/proudct-info.dto";
 import { productInfoByCateController } from "../product_info/product-info.controller";
-import { filterProductInfoByCateController } from "../filter_product_info_by_cate/filter-product-info-by-cate.controller";
-import { filterProductInfoByCateValidate } from "../filter_product_info_by_cate/filter-product-info-by-cate.validate";
-import filterProductInfoByCateDTO from "../filter_product_info_by_cate/filter-product-info-by-cate.dto";
+import { filterProductInfoByCateController } from "../product_filter/product-filter.controller";
+import { filterProductInfoByCateValidate } from "../product_filter/product-filter.validate";
+import filterProductInfoByCateDTO from "../product_filter/product-filter.dto";
 const Router = express.Router();
 
 Router.route("/")

@@ -1,4 +1,4 @@
-import { filterProductInfoCateService } from "./filter-product-info-by-cate.service"
+import { filterProductInfoCateService } from "./product-filter.service"
 
 const getByCategory = async (req, res, next) => {
   try {    
