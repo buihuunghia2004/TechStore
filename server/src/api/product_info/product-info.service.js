@@ -2,7 +2,9 @@ import ApiError from "@/utils/ApiError";
 import { CategoryModel } from "../category/category.model";
 import { ProductInfoModel } from "./product-info.mode.";
 import { StatusCodes } from "http-status-codes";
-import { productInfoValidate } from "./product-info.validate";
+import { productInfoErrors, productInfoValidate } from "./product-info.validate";
+import { ERRORS } from "@/utils/Constants";
+import ResErros from "@/common/ResErrors";
 
 const getInfosByCategory = async (cateSlug) => {
   return await CategoryModel
@@ -15,7 +17,7 @@ const create = async ( cateSlug, data, creator) => {
   const category = await CategoryModel.findOne({ slug: cateSlug });
   if (!category) {
     throw new ApiError(StatusCodes.BAD_REQUEST, "Bad request", [
-      categoryValidate.errorMap.HANDLE.categoryNotFound,
+      productInfoErrors.create.notFoundCate
     ]);
   }
   
@@ -34,11 +36,15 @@ const create = async ( cateSlug, data, creator) => {
     await category.save();
     return productInfo;
   }catch (error) {
-    console.log(error);
+    if (error.code === ERRORS.DUPLICATE) {
+      throw new ApiError(StatusCodes.BAD_REQUEST, "Product info already exists", [
+        productInfoErrors.create.productInfoExists
+      ])
+    }
     throw new ApiError(
       StatusCodes.INTERNAL_SERVER_ERROR,
       "Something went wrong",
-      [brandValidate.errorMap.HANDLE.internalServerError]
+      [ResErros.INTERNAL_SERVER_ERROR]
     );
   }
 }

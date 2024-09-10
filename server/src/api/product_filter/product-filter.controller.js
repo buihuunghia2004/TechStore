@@ -1,8 +1,8 @@
-import { filterProductInfoCateService } from "./product-filter.service"
+import { productFilterService } from "./product-filter.service"
 
 const getByCategory = async (req, res, next) => {
   try {    
-    const result = await filterProductInfoCateService.getByCategory(req.params.category)
+    const result = await productFilterService.getByCategory(req.params.slug)
     res.status(200).json({
       status:true,
       data:result,
@@ -15,7 +15,7 @@ const getByCategory = async (req, res, next) => {
 
 const create = async (req, res, next) => {  
   try {
-    const result = await filterProductInfoCateService.create(req.params.slug, req.body, req.account.username)
+    const result = await productFilterService.create(req.params.slug, req.body, req.account.username)
     res.status(200).json({
       status:true,
       data:result,
@@ -26,7 +26,7 @@ const create = async (req, res, next) => {
   }
 }
 
-export const filterProductInfoByCateController = {
+export const productFilterController = {
   create,
   getByCategory
 }

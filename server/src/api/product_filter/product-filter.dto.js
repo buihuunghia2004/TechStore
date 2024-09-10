@@ -6,7 +6,7 @@ const UPDATED_BY = 'updatedBy';
 const CREATED_AT = 'createdAt';
 const UPDATED_AT = 'updatedAt';
 
-const filterProductInfoByCateDTO = {
+const productFilterDTO = {
   query: {
     only: [
       NAME,
@@ -29,4 +29,4 @@ const filterProductInfoByCateDTO = {
   response: {},
 };
 
-export default filterProductInfoByCateDTO;
+export default productFilterDTO;
