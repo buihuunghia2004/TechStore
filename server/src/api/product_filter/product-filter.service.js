@@ -54,7 +54,33 @@ const create = async ( categorySlug, data, creator) => {
   }
 }
 
+const deleteById = async (id) => {
+  try{
+    const filter = await ProductFilterModel.findByIdAndDelete(id)
+
+    if (!filter) {
+      throw new ApiError(StatusCodes.NOT_FOUND, "Product info not found", [  
+        productFilterHandleErrors.delete.filterNotFound
+      ]);
+    }
+    
+    // remove filter from category
+    const category = await CategoryModel.findById(filter.categoryId)
+    category.productFilters.pull(filter._id)
+    await category.save()
+    
+  }catch(error){
+    console.log(error);
+    throw new ApiError(
+      StatusCodes.INTERNAL_SERVER_ERROR,
+      "Something went wrong",
+      [ResErros.INTERNAL_SERVER_ERROR]
+    )
+  }
+}
+
 export const productFilterService = {
   create,
-  getByCategory
+  getByCategory,
+  deleteById
 }

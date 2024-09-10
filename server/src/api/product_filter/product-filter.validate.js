@@ -21,6 +21,9 @@ export const productFilterHandleErrors =   {
       categoryNotFound: '3404-Category not found',
       filterExists: '11000-Filter allready exists'
     },
+    delete:{
+      filterNotFound: '11404-Filter not found'
+    },
     internalServerError:'230-Internal server error'
   }
 
