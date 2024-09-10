@@ -1,16 +1,18 @@
 import ApiError from "@/utils/ApiError";
 import { CategoryModel } from "../category/category.model";
-import { ProductInfoCateModel } from "./product-info-by-cate.model";
 import { StatusCodes } from "http-status-codes";
+import { FilterProductInfoCateModel } from "./product-filter.model";
 
-const getByCategory = async (categorySlug) => {
+const getByCategory = async (categorySlug) => {  
   const category = await CategoryModel
     .findOne({ slug: categorySlug })
-    .populate('productInfos');
+    .populate('filterProductInfos');
+  console.log(category);
+    
   if (!category) {
     return []
   } 
-  return category.productInfos
+  return category.filterProductInfos
 }
 
 const create = async ( categorySlug, data, creator) => {  
@@ -22,7 +24,7 @@ const create = async ( categorySlug, data, creator) => {
   }
   
   try {
-    const productInfoCate = new ProductInfoCateModel({
+    const filterProductInfoCate = new FilterProductInfoCateModel({
       name: data.name,
       code: data.code,
       categoryId: category._id,
@@ -30,11 +32,11 @@ const create = async ( categorySlug, data, creator) => {
       updatedBy: creator,
     });
 
-    await productInfoCate.save();
+    await filterProductInfoCate.save();
 
-    category.productInfos.push(productInfoCate._id);
+    category.filterProductInfos.push(filterProductInfoCate._id);
     await category.save();
-    return productInfoCate;
+    return filterProductInfoCate;
   }catch (error) {    
     throw new ApiError(
       StatusCodes.INTERNAL_SERVER_ERROR,
@@ -44,7 +46,7 @@ const create = async ( categorySlug, data, creator) => {
   }
 }
 
-export const productInfoByCateService = {
+export const filterProductInfoCateService = {
   create,
   getByCategory
 }

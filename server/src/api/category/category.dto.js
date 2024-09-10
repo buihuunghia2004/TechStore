@@ -1,7 +1,7 @@
 const NAME = 'name';
 const URL_IMAGE = 'urlImage';
 const SLUG = 'slug';
-const CODE = 'code';
+const BRANDS = 'brands';
 const _DESTROY = '_destroy';
 const CREATED_BY = 'createdBy';
 const UPDATED_BY = 'updatedBy';
@@ -14,6 +14,7 @@ const categoryDTO = {
       NAME,
       URL_IMAGE,
       SLUG,
+      BRANDS,
       CREATED_AT,
       UPDATED_AT,
       CREATED_BY,

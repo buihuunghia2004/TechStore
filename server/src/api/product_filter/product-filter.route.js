@@ -1,5 +1,5 @@
 import express from 'express'
-import { filterProductInfoByCateController } from './filter-product-info-by-cate.controller'
+import { filterProductInfoByCateController } from './product-filter.controller'
 const Router = express.Router()
 
 Router.route('/:category')

@@ -7,9 +7,9 @@ const managerSchema = new Schema(
       type: String,
       required: true,
     },
-    categoryId:{
-      type: Schema.Types.ObjectId,
-      required: true,
+    slug:{
+      type:String,
+      required:true
     },
     imgUrl: {
       type: String,
@@ -17,6 +17,10 @@ const managerSchema = new Schema(
     },
     imgPId: {
       type: String,
+      required: true,
+    },
+    categoryId:{
+      type: Schema.Types.ObjectId,
       required: true,
     },
     createdBy: {
