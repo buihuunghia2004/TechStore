@@ -11,10 +11,10 @@ import { categoryValidate } from "./category.validate";
 import categoryDTO from "./category.dto";
 import { productInfoValidate } from "../product_info/product-info.validate";
 import productInfoByCateDTO from "../product_info/proudct-info.dto";
-import { productInfoByCateController } from "../product_info/product-info.controller";
-import { filterProductInfoByCateController } from "../product_filter/product-filter.controller";
-import { filterProductInfoByCateValidate } from "../product_filter/product-filter.validate";
-import filterProductInfoByCateDTO from "../product_filter/product-filter.dto";
+import { productFilterController } from "../product_filter/product-filter.controller";
+import { productFilterValidate } from "../product_filter/product-filter.validate";
+import { productInfoController } from "../product_info/product-info.controller";
+import productFilterDTO from "../product_filter/product-filter.dto";
 const Router = express.Router();
 
 Router.route("/")
@@ -41,15 +41,19 @@ Router.route("/:slug/brands")
     brandController.createBrand
   );
 
-Router.route("/:slug/filter-product-infos")
+Router.route("/:slug/product-filters")
   .post(
-  authorizeRoles([ROLE.ADMIN]),
-  validationMiddleware(
-    filterProductInfoByCateValidate.create,
-    filterProductInfoByCateDTO.query.create
-  ),
-  filterProductInfoByCateController.create
-  );
+    authorizeRoles([ROLE.ADMIN]),
+    validationMiddleware(
+      productFilterValidate.create,
+      productFilterDTO.query.create
+    ),
+    productFilterController.create
+  )
+  .get(
+    productFilterController.getByCategory
+  )
+
 
 Router.route("/:slug/product-infos")
   .post(
@@ -58,10 +62,8 @@ Router.route("/:slug/product-infos")
       productInfoValidate.create,
       productInfoByCateDTO.query.create
     ),
-    productInfoByCateController.create
+    productInfoController.create
   )
-  .get(
-
-  )
+  .get();
 
 export const categoryRoute = Router;

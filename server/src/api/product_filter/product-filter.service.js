@@ -1,52 +1,60 @@
 import ApiError from "@/utils/ApiError";
 import { CategoryModel } from "../category/category.model";
 import { StatusCodes } from "http-status-codes";
-import { FilterProductInfoCateModel } from "./product-filter.model";
+import { ProductFilterModel } from "./product-filter.model";
+import { productFilterHandleErrors } from "./product-filter.validate";
+import { ERRORS } from "@/utils/Constants";
+import ResErros from "@/common/ResErrors";
 
 const getByCategory = async (categorySlug) => {  
-  const category = await CategoryModel
-    .findOne({ slug: categorySlug })
-    .populate('filterProductInfos');
-  console.log(category);
+  const result = await CategoryModel
+    .findOne({ slug: categorySlug },{productFilters:1})
+    .populate('productFilters');
     
-  if (!category) {
+  if (!result) {
     return []
   } 
-  return category.filterProductInfos
+  return result.productFilters
 }
 
 const create = async ( categorySlug, data, creator) => {  
   const category = await CategoryModel.findOne({ slug: categorySlug });
   if (!category) {
-    throw new ApiError(StatusCodes.BAD_REQUEST, "Category not found", [
-      categoryValidate.errorMap.HANDLE.categoryNotFound,
+    throw new ApiError(StatusCodes.BAD_REQUEST, "Bad request", [
+      productFilterHandleErrors.create.categoryNotFound
     ]);
   }
   
   try {
-    const filterProductInfoCate = new FilterProductInfoCateModel({
+    const productFilter = new ProductFilterModel({
       name: data.name,
       code: data.code,
       categoryId: category._id,
       createdBy: creator,
       updatedBy: creator,
     });
+    await productFilter.save();
 
-    await filterProductInfoCate.save();
-
-    category.filterProductInfos.push(filterProductInfoCate._id);
+    category.productFilters.push(productFilter._id);
     await category.save();
-    return filterProductInfoCate;
-  }catch (error) {    
+    return productFilter;
+  }catch (error) {
+    if (error.code === ERRORS.DUPLICATE) {
+      throw new ApiError(
+        StatusCodes.BAD_REQUEST,
+        "Bad request",
+        [productFilterHandleErrors.create.filterExists]
+      );
+    }
     throw new ApiError(
       StatusCodes.INTERNAL_SERVER_ERROR,
       "Something went wrong",
-      [brandValidate.errorMap.HANDLE.internalServerError]
+      [ResErros.INTERNAL_SERVER_ERROR]
     );
   }
 }
 
-export const filterProductInfoCateService = {
+export const productFilterService = {
   create,
   getByCategory
 }

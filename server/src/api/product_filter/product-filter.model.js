@@ -26,4 +26,4 @@ const schema = new Schema(
   },
   { timestamps: true }
 );
-export const FilterProductInfoCateModel = mongoose.model("FilterInfoByCate", schema);
+export const ProductFilterModel = mongoose.model("ProductFilter", schema);

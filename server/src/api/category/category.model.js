@@ -27,14 +27,14 @@ const categorySchema = new Schema(
       ref: 'Brand',
       default: [],
     },
-    filterProductInfos:{
+    productFilters:{
       type: [Schema.Types.ObjectId],
-      ref: 'FilterInfoByCate',
+      ref: 'ProductFilter',
       default: [],
     },
     productInfos:{
       type: [Schema.Types.ObjectId],
-      ref: 'ProductInfoByCate',
+      ref: 'ProductInfo',
       default: [],
     },
     createdBy: {
