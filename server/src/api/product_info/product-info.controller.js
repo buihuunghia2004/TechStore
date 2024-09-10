@@ -1,8 +1,8 @@
-import { productInfoByCateService } from "./product-info-by-cate.service"
+import { productInfoService } from "./product-info.service"
 
 const getByCategory = async (req, res, next) => {
   try {
-    const result = await productInfoByCateService.getByCategory(req.params.category)
+    const result = await productInfoService.getByCategory(req.params.category)
     res.status(200).json({
       status:true,
       data:result,
@@ -13,9 +13,9 @@ const getByCategory = async (req, res, next) => {
   }
 }
 
-const create = async (req, res, next) => {  
+const create = async (req, res, next) => {
   try {    
-    const result = await productInfoByCateService.create(req.params.slug, req.body, req.account.username)
+    const result = await productInfoService.create(req.params.slug, req.body, req.account.username)
     res.status(200).json({
       status:true,
       data:result,
@@ -26,7 +26,7 @@ const create = async (req, res, next) => {
   }
 }
 
-export const productInfoByCateController = {
+export const productInfoController = {
   create,
   getByCategory
 }
